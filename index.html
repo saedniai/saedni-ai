@@ -246,6 +246,37 @@ body.side-open{overflow:hidden}
 .switch input:checked+.slider:before{transform:translateX(-20px)}
 .status{font-size:11px;color:var(--muted);margin-top:6px;min-height:16px;line-height:1.6}
 
+/* Auth + invites */
+.auth-screen{position:fixed;inset:0;z-index:500;background:radial-gradient(circle at 85% 0%,rgba(124,58,237,.16),transparent 35%),radial-gradient(circle at 10% 100%,rgba(37,99,235,.14),transparent 35%),var(--bg);display:none;align-items:center;justify-content:center;padding:18px;overflow:auto}
+.auth-screen.open{display:flex}
+.auth-card{width:min(420px,100%);background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:0 25px 80px rgba(15,23,42,.14);padding:26px 22px 22px;text-align:center}
+.auth-card .hero{width:70px;height:70px;font-size:30px;margin:0 auto 12px;border-radius:22px}
+.auth-card h1{margin:0 0 4px;font-size:24px;font-weight:800}
+.auth-card .sub{color:var(--muted);font-size:13.5px;line-height:1.8;margin:0 0 16px}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:4px;margin-bottom:6px}
+.auth-tabs button{padding:10px;border-radius:11px;background:transparent;font-weight:800;font-size:14px;color:var(--muted);transition:.15s}
+.auth-tabs button.active{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;box-shadow:0 6px 16px rgba(37,99,235,.25)}
+.auth-card .field{text-align:right;margin:11px 0}
+.auth-card .field input{direction:ltr;text-align:right}
+.auth-card .field input.code{letter-spacing:2px;text-transform:uppercase;font-family:ui-monospace,Consolas,monospace;text-align:center}
+.auth-error{min-height:20px;margin:8px 0 2px;font-size:13px;color:var(--danger);line-height:1.7;font-weight:700}
+.auth-hint{font-size:12px;color:var(--muted);line-height:1.8;margin-top:12px}
+.primary-btn:disabled{opacity:.6;cursor:wait}
+.inv-summary{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:11px 13px;font-size:13px;line-height:1.8;color:var(--muted);margin-bottom:10px}
+.inv-summary b{color:var(--text)}
+.inv-list{display:grid;gap:8px}
+.inv-row{display:flex;align-items:center;gap:8px;padding:9px 10px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.inv-code{flex:1;min-width:0;white-space:nowrap;direction:ltr;text-align:left;font-family:ui-monospace,Consolas,monospace;font-weight:800;font-size:16px;letter-spacing:1.5px}
+.inv-row.used .inv-code{text-decoration:line-through;opacity:.5}
+.inv-badge{font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.inv-badge.free{background:rgba(22,163,74,.12);color:var(--ok)}
+.inv-badge.taken{background:rgba(100,116,139,.15);color:var(--muted)}
+.inv-btn{padding:7px 10px;border-radius:10px;background:var(--card);border:1px solid var(--line);font-size:12px;font-weight:700;white-space:nowrap}
+.inv-btn:hover{background:rgba(100,116,139,.12)}
+.inv-btn:disabled{opacity:.35;cursor:not-allowed}
+.form-msg{font-size:12.5px;line-height:1.7;min-height:18px;margin-top:6px}
+.form-msg.err{color:var(--danger)}.form-msg.ok{color:var(--ok)}
+
 /* Mobile */
 @media(max-width:760px){
  .sidebar{position:fixed;top:0;bottom:0;right:0;width:min(88vw,330px);transform:translateX(105%);transition:transform .22s ease;box-shadow:-15px 0 40px rgba(0,0,0,.18);overflow:auto}
@@ -260,6 +291,7 @@ body.side-open{overflow:hidden}
  .scrolldown{bottom:100px}
 }
 @media(max-width:430px){
+ .inv-code{font-size:14px;letter-spacing:.5px}.inv-badge{font-size:10px;padding:3px 7px}.inv-btn{padding:7px 8px}.inv-row{gap:6px;padding:8px}
  .attachment .name{max-width:125px}.action{width:42px;height:42px;flex-basis:42px}
  .title{font-size:15px}.online{font-size:10px}
 }
@@ -271,32 +303,33 @@ body.side-open{overflow:hidden}
 <aside class="sidebar" id="sidebar">
   <div class="brandrow">
     <div class="brand"><div class="brandlogo">S</div><span>Saedni AI</span></div>
-    <button class="icon" id="close" title="إغلاق">✕</button>
+    <button class="icon" id="close" title="廿睾賱丕賯">鉁�</button>
   </div>
 
-  <button class="new" id="new">＋ محادثة جديدة</button>
+  <button class="new" id="new">锛� 賲丨丕丿孬丞 噩丿賷丿丞</button>
 
   <div class="search">
-    <span>🔍</span>
-    <input id="searchInput" placeholder="ابحث في المحادثات..." autocomplete="off">
+    <span>馃攳</span>
+    <input id="searchInput" placeholder="丕亘丨孬 賮賷 丕賱賲丨丕丿孬丕鬲..." autocomplete="off">
   </div>
 
-  <div class="label">المحادثات</div>
+  <div class="label">丕賱賲丨丕丿孬丕鬲</div>
   <div class="history" id="history"></div>
 
   <div class="bottom">
     <div class="side-section">
       <div class="user-card" id="userCard">
-        <div class="avatar" id="avatar">ز</div>
+        <div class="avatar" id="avatar">夭</div>
         <div>
-          <strong id="userName">زائر</strong>
-          <small id="userEmail">استخدم حسابًا محليًا</small>
+          <strong id="userName">夭丕卅乇</strong>
+          <small id="userEmail">爻噩賾賱 丿禺賵賱賰</small>
         </div>
       </div>
-      <button class="sidebtn" id="accountBtn">👤 <span>إنشاء حساب</span></button>
-      <button class="sidebtn" id="settingsBtn">⚙️ <span>الإعدادات</span></button>
-      <button class="sidebtn" id="theme">◐ <span>تغيير المظهر</span></button>
-      <button class="sidebtn" id="clear">🗑 <span>مسح كل المحادثات</span></button>
+      <button class="sidebtn" id="accountBtn">馃懁 <span>丨爻丕亘賷</span></button>
+      <button class="sidebtn" id="invitesBtn">馃師锔� <span>丿毓賵丕鬲賷</span></button>
+      <button class="sidebtn" id="settingsBtn">鈿欙笍 <span>丕賱廿毓丿丕丿丕鬲</span></button>
+      <button class="sidebtn" id="theme">鈼� <span>鬲睾賷賷乇 丕賱賲馗賴乇</span></button>
+      <button class="sidebtn" id="clear">馃棏 <span>賲爻丨 賰賱 丕賱賲丨丕丿孬丕鬲</span></button>
     </div>
   </div>
 </aside>
@@ -306,45 +339,45 @@ body.side-open{overflow:hidden}
 <section class="main">
 <header class="top">
   <div class="topinfo">
-    <button class="mobile" id="open">☰</button>
+    <button class="mobile" id="open">鈽�</button>
     <div class="brandlogo" style="width:40px;height:40px;border-radius:13px;font-size:18px">S</div>
     <div>
       <div class="title" id="chatTitle">Saedni AI</div>
-      <div class="online">● جاهز وسريع</div>
+      <div class="online">鈼� 噩丕賴夭 賵爻乇賷毓</div>
     </div>
   </div>
   <div class="actions">
-    <button class="icon" id="exportBtn" title="تنزيل المحادثة">⬇</button>
-    <button class="icon" id="newtop" title="محادثة جديدة">＋</button>
-    <button class="icon" id="themetop" title="المظهر">◐</button>
+    <button class="icon" id="exportBtn" title="鬲賳夭賷賱 丕賱賲丨丕丿孬丞">猬�</button>
+    <button class="icon" id="newtop" title="賲丨丕丿孬丞 噩丿賷丿丞">锛�</button>
+    <button class="icon" id="themetop" title="丕賱賲馗賴乇">鈼�</button>
   </div>
 </header>
 
 <main class="chat" id="chat"></main>
 
-<button class="scrolldown" id="scrolldown" title="النزول لآخر رسالة">↓</button>
+<button class="scrolldown" id="scrolldown" title="丕賱賳夭賵賱 賱丌禺乇 乇爻丕賱丞">鈫�</button>
 
 <div class="composer">
   <div class="box">
     <div class="attachments" id="attachmentsPreview"></div>
     <div class="row">
       <div class="add-wrap">
-        <button class="action add" id="addBtn" type="button" title="إرفاق">＋</button>
+        <button class="action add" id="addBtn" type="button" title="廿乇賮丕賯">锛�</button>
         <div class="attach-menu" id="attachMenu">
-          <button id="cameraBtn" type="button">📷 <span>التقاط صورة</span></button>
-          <button id="imageBtn" type="button">🖼️ <span>اختيار صورة</span></button>
-          <button id="fileBtn" type="button">📎 <span>إرفاق ملف</span></button>
+          <button id="cameraBtn" type="button">馃摲 <span>丕賱鬲賯丕胤 氐賵乇丞</span></button>
+          <button id="imageBtn" type="button">馃柤锔� <span>丕禺鬲賷丕乇 氐賵乇丞</span></button>
+          <button id="fileBtn" type="button">馃搸 <span>廿乇賮丕賯 賲賱賮</span></button>
         </div>
         <input class="hidden-input" id="cameraInput" type="file" accept="image/*" capture="environment">
         <input class="hidden-input" id="imageInput" type="file" accept="image/*">
         <input class="hidden-input" id="fileInput" type="file" accept=".pdf,.txt,.csv,.doc,.docx,.xls,.xlsx,application/pdf,text/plain,text/csv,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
       </div>
 
-      <textarea id="message" rows="1" placeholder="اكتب رسالتك هنا..." autocomplete="off"></textarea>
-      <button class="action mic" id="mic" type="button" title="إدخال صوتي">🎙️</button>
-      <button class="action send" id="send" type="button" title="إرسال">➤</button>
+      <textarea id="message" rows="1" placeholder="丕賰鬲亘 乇爻丕賱鬲賰 賴賳丕..." autocomplete="off"></textarea>
+      <button class="action mic" id="mic" type="button" title="廿丿禺丕賱 氐賵鬲賷">馃帣锔�</button>
+      <button class="action send" id="send" type="button" title="廿乇爻丕賱">鉃�</button>
     </div>
-    <div class="note">Saedni AI قد يخطئ أحيانًا، راجع المعلومات المهمة قبل الاعتماد عليها.</div>
+    <div class="note">Saedni AI 賯丿 賷禺胤卅 兀丨賷丕賳賸丕貙 乇丕噩毓 丕賱賲毓賱賵賲丕鬲 丕賱賲賴賲丞 賯亘賱 丕賱丕毓鬲賲丕丿 毓賱賷賴丕.</div>
   </div>
 </div>
 </section>
@@ -354,16 +387,15 @@ body.side-open{overflow:hidden}
 <div class="modal-backdrop" id="accountModal">
   <div class="modal">
     <div class="modal-head">
-      <h2>👤 إنشاء حساب</h2>
-      <button class="close-modal" data-close="accountModal">✕</button>
+      <h2>馃懁 丨爻丕亘賷</h2>
+      <button class="close-modal" data-close="accountModal">鉁�</button>
     </div>
-    <p class="account-note">
-      الحساب هنا محلي على هذا الجهاز في هذه النسخة؛ لا نرسل بياناتك الشخصية إلى Gemini.
-    </p>
-    <div class="field"><label>الاسم</label><input id="accountName" maxlength="40" placeholder="اكتب اسمك"></div>
-    <div class="field"><label>البريد الإلكتروني</label><input id="accountEmail" type="email" maxlength="80" placeholder="example@email.com"></div>
-    <button class="primary-btn" id="saveAccount">حفظ الحساب</button>
-    <button class="secondary-btn" data-close="accountModal">إلغاء</button>
+    <p class="account-note">兀賳鬲 丿丕禺賱 亘丕爻賲: <strong id="accountUserLabel"></strong></p>
+    <div class="field"><label>賰賱賲丞 丕賱爻乇 丕賱丨丕賱賷丞</label><input id="oldPass" type="password" autocomplete="current-password" maxlength="100"></div>
+    <div class="field"><label>賰賱賲丞 丕賱爻乇 丕賱噩丿賷丿丞</label><input id="newPass" type="password" autocomplete="new-password" maxlength="100" placeholder="6 丨乇賵賮 毓賱賶 丕賱兀賯賱"></div>
+    <div class="form-msg" id="pwMsg"></div>
+    <button class="primary-btn" id="changePassBtn">鬲睾賷賷乇 賰賱賲丞 丕賱爻乇</button>
+    <button class="secondary-btn" id="logoutBtn">馃毆 鬲爻噩賷賱 丕賱禺乇賵噩</button>
   </div>
 </div>
 
@@ -371,36 +403,70 @@ body.side-open{overflow:hidden}
 <div class="modal-backdrop" id="settingsModal">
   <div class="modal">
     <div class="modal-head">
-      <h2>⚙️ الإعدادات</h2>
-      <button class="close-modal" data-close="settingsModal">✕</button>
+      <h2>鈿欙笍 丕賱廿毓丿丕丿丕鬲</h2>
+      <button class="close-modal" data-close="settingsModal">鉁�</button>
     </div>
 
     <div class="field">
-      <label>موديل الذكاء الاصطناعي</label>
+      <label>賲賵丿賷賱 丕賱匕賰丕亍 丕賱丕氐胤賳丕毓賷</label>
       <select id="modelSelect">
-        <option value="auto">⚡ تلقائي — الأفضل والأسرع</option>
-        <option value="gemini-3.5-flash">Gemini 3.5 Flash — الأقوى</option>
-        <option value="gemini-3.1-flash-lite">Gemini 3.1 Flash-Lite — الأسرع</option>
+        <option value="auto">鈿� 鬲賱賯丕卅賷 鈥� 丕賱兀賮囟賱 賵丕賱兀爻乇毓</option>
+        <option value="gemini-3.5-flash">Gemini 3.5 Flash 鈥� 丕賱兀賯賵賶</option>
+        <option value="gemini-3.1-flash-lite">Gemini 3.1 Flash-Lite 鈥� 丕賱兀爻乇毓</option>
       </select>
-      <div class="status">الوضع التلقائي يجرب أفضل الموديلات بالترتيب عند تعذر أحدها.</div>
+      <div class="status">丕賱賵囟毓 丕賱鬲賱賯丕卅賷 賷噩乇亘 兀賮囟賱 丕賱賲賵丿賷賱丕鬲 亘丕賱鬲乇鬲賷亘 毓賳丿 鬲毓匕乇 兀丨丿賴丕.</div>
     </div>
 
     <div class="setting-row">
-      <div><strong>الوضع الداكن</strong><div class="status">تغيير مظهر التطبيق</div></div>
+      <div><strong>丕賱賵囟毓 丕賱丿丕賰賳</strong><div class="status">鬲睾賷賷乇 賲馗賴乇 丕賱鬲胤亘賷賯</div></div>
       <label class="switch"><input id="darkSwitch" type="checkbox"><span class="slider"></span></label>
     </div>
 
     <div class="setting-row">
-      <div><strong>حفظ المحادثات</strong><div class="status">محليًا على هذا الجهاز فقط</div></div>
+      <div><strong>丨賮馗 丕賱賲丨丕丿孬丕鬲</strong><div class="status">賲丨賱賷賸丕 毓賱賶 賴匕丕 丕賱噩賴丕夭 賮賯胤</div></div>
       <label class="switch"><input id="saveSwitch" type="checkbox" checked><span class="slider"></span></label>
     </div>
 
     <div class="setting-row">
-      <div><strong>تأثير الكتابة التدريجية</strong><div class="status">عرض الردود بشكل متدرج كأنها تُكتب الآن</div></div>
+      <div><strong>鬲兀孬賷乇 丕賱賰鬲丕亘丞 丕賱鬲丿乇賷噩賷丞</strong><div class="status">毓乇囟 丕賱乇丿賵丿 亘卮賰賱 賲鬲丿乇噩 賰兀賳賴丕 鬲購賰鬲亘 丕賱丌賳</div></div>
       <label class="switch"><input id="typewriterSwitch" type="checkbox" checked><span class="slider"></span></label>
     </div>
 
-    <button class="primary-btn" id="saveSettings">حفظ الإعدادات</button>
+    <button class="primary-btn" id="saveSettings">丨賮馗 丕賱廿毓丿丕丿丕鬲</button>
+  </div>
+</div>
+
+<!-- Invites -->
+<div class="modal-backdrop" id="invitesModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>馃師锔� 丿毓賵丕鬲賷</h2>
+      <button class="close-modal" data-close="invitesModal">鉁�</button>
+    </div>
+    <div class="inv-summary" id="invSummary">噩丕乇賷 丕賱鬲丨賲賷賱...</div>
+    <div class="inv-list" id="invList"></div>
+    <div class="status" id="invStatus"></div>
+  </div>
+</div>
+
+<!-- Login / Register -->
+<div class="auth-screen" id="authScreen">
+  <div class="auth-card">
+    <div class="brandlogo hero">S</div>
+    <h1>Saedni AI</h1>
+    <p class="sub" id="authSub">爻噩賾賱 丿禺賵賱賰 毓卮丕賳 鬲亘丿兀 鬲爻鬲禺丿賲 丕賱賲爻丕毓丿.</p>
+    <div class="auth-tabs">
+      <button type="button" id="tabLogin" class="active">鬲爻噩賷賱 丕賱丿禺賵賱</button>
+      <button type="button" id="tabRegister">丨爻丕亘 噩丿賷丿</button>
+    </div>
+    <form id="authForm" autocomplete="on" novalidate>
+      <div class="field"><label for="authUser">丕爻賲 丕賱賲爻鬲禺丿賲</label><input id="authUser" name="username" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="20" placeholder="賲孬丕賱: ahmed"></div>
+      <div class="field"><label for="authPass">賰賱賲丞 丕賱爻乇</label><input id="authPass" name="password" type="password" autocomplete="current-password" maxlength="100" placeholder="6 丨乇賵賮 毓賱賶 丕賱兀賯賱"></div>
+      <div class="field" id="inviteField" style="display:none"><label for="authInvite">賰賵丿 丕賱丿毓賵丞</label><input id="authInvite" class="code" name="invite" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" placeholder="XXXX-XXXX"></div>
+      <div class="auth-error" id="authError"></div>
+      <button class="primary-btn" id="authSubmit" type="submit">丿禺賵賱</button>
+    </form>
+    <div class="auth-hint" id="authHint">賳爻賷鬲 賰賱賲丞 丕賱爻乇責 賰賱賾賲 氐丕丨亘 丕賱鬲胤亘賷賯 賵賴賵 賷乇噩賾毓賴丕賱賰.</div>
   </div>
 </div>
 
@@ -425,7 +491,6 @@ let abortCtrl=null,typeTimer=null,speaking=false,currentChatId=null;
 
 const KEY='saedni_history_v5';
 const THEME='saedni_theme';
-const ACCOUNT='saedni_account';
 const SETTINGS='saedni_settings';
 const MAX_FILE_SIZE=20*1024*1024;
 const MAX_HISTORY_SEND=12;
@@ -472,8 +537,8 @@ function fmtDate(ts){
    let today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
    let day=new Date(d.getFullYear(),d.getMonth(),d.getDate());
    let diff=Math.round((today-day)/86400000);
-   if(diff===0)return 'اليوم';
-   if(diff===1)return 'أمس';
+   if(diff===0)return '丕賱賷賵賲';
+   if(diff===1)return '兀賲爻';
    if(diff<7)return d.toLocaleDateString('ar-EG',{weekday:'long'});
    return d.toLocaleDateString('ar-EG',{day:'numeric',month:'short'});
  }catch(e){return ''}
@@ -512,7 +577,7 @@ function renderMarkdown(src){
        code=blk.slice(nl+1);
      }
      // unclosed fence at the very end: everything is code
-     html+='<div class="codeblock"><div class="codehead"><span>'+esc(lang||'code')+'</span><button type="button" class="copycode">نسخ</button></div><pre><code>'+esc(code)+'</code></pre></div>';
+     html+='<div class="codeblock"><div class="codehead"><span>'+esc(lang||'code')+'</span><button type="button" class="copycode">賳爻禺</button></div><pre><code>'+esc(code)+'</code></pre></div>';
      inCode=false;
      continue;
    }
@@ -567,11 +632,11 @@ function renderMarkdown(src){
        continue;
      }
 
-     if(/^[-*•]\s+/.test(t)){
+     if(/^[-*鈥\s+/.test(t)){
        flushPara();
        let items=[];
-       while(i<lines.length&&/^[-*•]\s+/.test(lines[i].trim())){
-         items.push(lines[i].trim().replace(/^[-*•]\s+/,''));
+       while(i<lines.length&&/^[-*鈥\s+/.test(lines[i].trim())){
+         items.push(lines[i].trim().replace(/^[-*鈥\s+/,''));
          i++;
        }
        html+='<ul>'+items.map(x=>'<li>'+renderInline(x)+'</li>').join('')+'</ul>';
@@ -608,8 +673,8 @@ function bindCodeCopy(root){
      if(!code)return;
      try{
        await navigator.clipboard.writeText(code.textContent);
-       btn.textContent='تم ✓';
-       setTimeout(()=>btn.textContent='نسخ',1200);
+       btn.textContent='鬲賲 鉁�';
+       setTimeout(()=>btn.textContent='賳爻禺',1200);
      }catch(e){}
    };
  });
@@ -626,12 +691,12 @@ function stripMarkdown(s){
 
 /* ---------- Welcome ---------- */
 const SUGGESTIONS=[
- {p:'اشرح لي فكرة معقدة بطريقة بسيطة',t:'💡 اشرح لي فكرة',s:'تبسيط أي موضوع خطوة بخطوة'},
- {p:'ساعدني في كتابة نص احترافي باللغة العربية',t:'✍️ ساعدني في الكتابة',s:'منشور أو مقال أو صياغة'},
- {p:'ساعدني في حل مشكلة برمجية',t:'💻 مساعدة برمجية',s:'تحليل الأخطاء واقتراح الحلول'},
- {p:'اقترح لي أفكارًا جديدة لمشروع رقمي',t:'🚀 أفكار جديدة',s:'أفكار عملية للمشاريع والمحتوى'},
- {p:'أنشئ لي صورة احترافية بناءً على وصف سأرسله لك',t:'🎨 إنشاء صورة',s:'توليد تصميم احترافي من وصفك'},
- {p:'أعطني خطة لتعلم مهارة جديدة في 30 يوم',t:'📚 خطة تعلم',s:'خطة عملية يومية لأي مهارة'}
+ {p:'丕卮乇丨 賱賷 賮賰乇丞 賲毓賯丿丞 亘胤乇賷賯丞 亘爻賷胤丞',t:'馃挕 丕卮乇丨 賱賷 賮賰乇丞',s:'鬲亘爻賷胤 兀賷 賲賵囟賵毓 禺胤賵丞 亘禺胤賵丞'},
+ {p:'爻丕毓丿賳賷 賮賷 賰鬲丕亘丞 賳氐 丕丨鬲乇丕賮賷 亘丕賱賱睾丞 丕賱毓乇亘賷丞',t:'鉁嶏笍 爻丕毓丿賳賷 賮賷 丕賱賰鬲丕亘丞',s:'賲賳卮賵乇 兀賵 賲賯丕賱 兀賵 氐賷丕睾丞'},
+ {p:'爻丕毓丿賳賷 賮賷 丨賱 賲卮賰賱丞 亘乇賲噩賷丞',t:'馃捇 賲爻丕毓丿丞 亘乇賲噩賷丞',s:'鬲丨賱賷賱 丕賱兀禺胤丕亍 賵丕賯鬲乇丕丨 丕賱丨賱賵賱'},
+ {p:'丕賯鬲乇丨 賱賷 兀賮賰丕乇賸丕 噩丿賷丿丞 賱賲卮乇賵毓 乇賯賲賷',t:'馃殌 兀賮賰丕乇 噩丿賷丿丞',s:'兀賮賰丕乇 毓賲賱賷丞 賱賱賲卮丕乇賷毓 賵丕賱賲丨鬲賵賶'},
+ {p:'兀賳卮卅 賱賷 氐賵乇丞 丕丨鬲乇丕賮賷丞 亘賳丕亍賸 毓賱賶 賵氐賮 爻兀乇爻賱賴 賱賰',t:'馃帹 廿賳卮丕亍 氐賵乇丞',s:'鬲賵賱賷丿 鬲氐賲賷賲 丕丨鬲乇丕賮賷 賲賳 賵氐賮賰'},
+ {p:'兀毓胤賳賷 禺胤丞 賱鬲毓賱賲 賲賴丕乇丞 噩丿賷丿丞 賮賷 30 賷賵賲',t:'馃摎 禺胤丞 鬲毓賱賲',s:'禺胤丞 毓賲賱賷丞 賷賵賲賷丞 賱兀賷 賲賴丕乇丞'}
 ];
 
 function welcome(){
@@ -639,7 +704,7 @@ function welcome(){
  let w=document.createElement('div');
  w.className='welcome';
  w.id='welcome';
- w.innerHTML='<div class="hero">S</div><h1>أهلًا بك في Saedni AI</h1><p>مساعدك الذكي بالعربية: اشرح، اكتب، ابرمج، وصمّم صورًا احترافية. اكتب سؤالك أو اختر اقتراحًا للبدء.</p>';
+ w.innerHTML='<div class="hero">S</div><h1>兀賴賱賸丕 亘賰 賮賷 Saedni AI</h1><p>賲爻丕毓丿賰 丕賱匕賰賷 亘丕賱毓乇亘賷丞: 丕卮乇丨貙 丕賰鬲亘貙 丕亘乇賲噩貙 賵氐賲賾賲 氐賵乇賸丕 丕丨鬲乇丕賮賷丞. 丕賰鬲亘 爻丐丕賱賰 兀賵 丕禺鬲乇 丕賯鬲乇丕丨賸丕 賱賱亘丿亍.</p>';
  let sg=document.createElement('div');
  sg.className='suggestions';
  SUGGESTIONS.forEach(x=>{
@@ -680,12 +745,12 @@ function add(text,type,save=true,media=[],generatedImage=null,ts=null,reveal=fal
      if(x.mimeType?.startsWith('image/')&&x.preview){
        let im=document.createElement('img');
        im.src=x.preview;
-       im.alt=x.name||'صورة';
+       im.alt=x.name||'氐賵乇丞';
        mb.appendChild(im);
      }else{
        let f=document.createElement('div');
        f.className='user-file';
-       f.textContent='📎 '+(x.name||'ملف مرفق');
+       f.textContent='馃搸 '+(x.name||'賲賱賮 賲乇賮賯');
        mb.appendChild(f);
      }
    });
@@ -708,14 +773,14 @@ function add(text,type,save=true,media=[],generatedImage=null,ts=null,reveal=fal
 
    let img=document.createElement('img');
    img.className='generated-image';
-   img.alt='صورة تم إنشاؤها بواسطة Saedni AI';
+   img.alt='氐賵乇丞 鬲賲 廿賳卮丕丐賴丕 亘賵丕爻胤丞 Saedni AI';
    img.loading='lazy';
    img.src='data:'+(generatedImage.mimeType||'image/jpeg')+';base64,'+generatedImage.data;
    gw.appendChild(img);
 
    let cap=document.createElement('div');
    cap.className='generated-caption';
-   cap.textContent='تم إنشاء الصورة بواسطة Saedni AI';
+   cap.textContent='鬲賲 廿賳卮丕亍 丕賱氐賵乇丞 亘賵丕爻胤丞 Saedni AI';
    gw.appendChild(cap);
 
    let actions=document.createElement('div');
@@ -723,7 +788,7 @@ function add(text,type,save=true,media=[],generatedImage=null,ts=null,reveal=fal
 
    let download=document.createElement('button');
    download.type='button';
-   download.textContent='⬇️ تحميل الصورة';
+   download.textContent='猬囷笍 鬲丨賲賷賱 丕賱氐賵乇丞';
    download.onclick=()=>{
      try{
        const a=document.createElement('a');
@@ -733,13 +798,13 @@ function add(text,type,save=true,media=[],generatedImage=null,ts=null,reveal=fal
        a.click();
        a.remove();
      }catch(e){
-       alert('تعذر تحميل الصورة.');
+       alert('鬲毓匕乇 鬲丨賲賷賱 丕賱氐賵乇丞.');
      }
    };
 
    let share=document.createElement('button');
    share.type='button';
-   share.textContent='📤 مشاركة الصورة';
+   share.textContent='馃摛 賲卮丕乇賰丞 丕賱氐賵乇丞';
    share.onclick=async()=>{
      try{
        const blob=await (await fetch(img.src)).blob();
@@ -748,12 +813,12 @@ function add(text,type,save=true,media=[],generatedImage=null,ts=null,reveal=fal
          await navigator.share({files:[file]});
        }else{
          await navigator.clipboard.writeText(img.src);
-         share.textContent='تم نسخ رابط الصورة ✓';
-         setTimeout(()=>share.textContent='📤 مشاركة الصورة',1400);
+         share.textContent='鬲賲 賳爻禺 乇丕亘胤 丕賱氐賵乇丞 鉁�';
+         setTimeout(()=>share.textContent='馃摛 賲卮丕乇賰丞 丕賱氐賵乇丞',1400);
        }
      }catch(e){
        if(e && e.name==='AbortError') return;
-       alert('تعذرت مشاركة الصورة.');
+       alert('鬲毓匕乇鬲 賲卮丕乇賰丞 丕賱氐賵乇丞.');
      }
    };
 
@@ -777,26 +842,26 @@ function add(text,type,save=true,media=[],generatedImage=null,ts=null,reveal=fal
    t.className='tools';
 
    let cp=document.createElement('button');
-   cp.textContent='📋 نسخ';
+   cp.textContent='馃搵 賳爻禺';
    cp.onclick=async()=>{
      try{
        await navigator.clipboard.writeText(text);
-       cp.textContent='تم النسخ ✓';
-       setTimeout(()=>cp.textContent='📋 نسخ',1200);
+       cp.textContent='鬲賲 丕賱賳爻禺 鉁�';
+       setTimeout(()=>cp.textContent='馃搵 賳爻禺',1200);
      }catch(e){}
    };
 
    let sp=document.createElement('button');
-   sp.textContent='🔊 استماع';
+   sp.textContent='馃攰 丕爻鬲賲丕毓';
    sp.onclick=()=>{
      if(speaking){
        try{speechSynthesis.cancel()}catch(e){}
        speaking=false;
-       sp.textContent='🔊 استماع';
+       sp.textContent='馃攰 丕爻鬲賲丕毓';
        return;
      }
      if(!('speechSynthesis' in window)){
-       alert('القراءة الصوتية غير مدعومة في هذا المتصفح.');
+       alert('丕賱賯乇丕亍丞 丕賱氐賵鬲賷丞 睾賷乇 賲丿毓賵賲丞 賮賷 賴匕丕 丕賱賲鬲氐賮丨.');
        return;
      }
      let plain=stripMarkdown(text);
@@ -804,10 +869,10 @@ function add(text,type,save=true,media=[],generatedImage=null,ts=null,reveal=fal
      let u=new SpeechSynthesisUtterance(plain.slice(0,1200));
      u.lang='ar-EG';
      u.rate=1;
-     u.onend=()=>{speaking=false;sp.textContent='🔊 استماع'};
-     u.onerror=()=>{speaking=false;sp.textContent='🔊 استماع'};
+     u.onend=()=>{speaking=false;sp.textContent='馃攰 丕爻鬲賲丕毓'};
+     u.onerror=()=>{speaking=false;sp.textContent='馃攰 丕爻鬲賲丕毓'};
      speaking=true;
-     sp.textContent='⏹ إيقاف';
+     sp.textContent='鈴� 廿賷賯丕賮';
      speechSynthesis.cancel();
      speechSynthesis.speak(u);
    };
@@ -863,7 +928,7 @@ function refreshRegenerate(){
  if(!tools)return;
  let rg=document.createElement('button');
  rg.className='regen';
- rg.textContent='↻ إعادة التوليد';
+ rg.textContent='鈫� 廿毓丕丿丞 丕賱鬲賵賱賷丿';
  rg.onclick=regenerate;
  tools.appendChild(rg);
 }
@@ -919,7 +984,7 @@ function typing(imageMode=false){
  w.id='typing';
  w.className='message ai';
  let inner=imageMode
-   ?'<div class="image-loading"><span class="spinner"></span><span>جاري إنشاء الصورة، قد يستغرق حتى دقيقة...</span></div>'
+   ?'<div class="image-loading"><span class="spinner"></span><span>噩丕乇賷 廿賳卮丕亍 丕賱氐賵乇丞貙 賯丿 賷爻鬲睾乇賯 丨鬲賶 丿賯賷賯丞...</span></div>'
    :'<div class="dots"><i></i><i></i><i></i></div>';
  w.innerHTML='<div class="mavatar">S</div><div class="content"><div class="bubble">'+inner+'</div></div>';
  chat.appendChild(w);
@@ -954,14 +1019,14 @@ function resize(){
 function updateSendState(){
  if(busy){
    send.disabled=false;
-   send.textContent='⏹';
+   send.textContent='鈴�';
    send.classList.add('stop');
-   send.title='إيقاف';
+   send.title='廿賷賯丕賮';
  }else{
    send.disabled=!input.value.trim()&&!attachments.length;
-   send.textContent='➤';
+   send.textContent='鉃�';
    send.classList.remove('stop');
-   send.title='إرسال';
+   send.title='廿乇爻丕賱';
  }
 }
 
@@ -983,7 +1048,7 @@ function renderAttachments(){
    }else{
      let ic=document.createElement('div');
      ic.className='file-icon';
-     ic.textContent=x.mimeType==='application/pdf'?'📕':'📎';
+     ic.textContent=x.mimeType==='application/pdf'?'馃摃':'馃搸';
      el.appendChild(ic);
    }
    let n=document.createElement('span');
@@ -993,7 +1058,7 @@ function renderAttachments(){
    let rm=document.createElement('button');
    rm.className='remove-attachment';
    rm.type='button';
-   rm.textContent='×';
+   rm.textContent='脳';
    rm.onclick=()=>{
      attachments.splice(i,1);
      renderAttachments();
@@ -1007,11 +1072,11 @@ function renderAttachments(){
 function readFile(file){
  return new Promise((resolve,reject)=>{
    if(!ALLOWED_TYPES.includes(file.type)){
-     reject(new Error('نوع الملف غير مدعوم: '+file.name));
+     reject(new Error('賳賵毓 丕賱賲賱賮 睾賷乇 賲丿毓賵賲: '+file.name));
      return;
    }
    if(file.size>MAX_FILE_SIZE){
-     reject(new Error('حجم الملف كبير جدًا: '+file.name+' (الحد الأقصى 20 MB)'));
+     reject(new Error('丨噩賲 丕賱賲賱賮 賰亘賷乇 噩丿賸丕: '+file.name+' (丕賱丨丿 丕賱兀賯氐賶 20 MB)'));
      return;
    }
    let r=new FileReader();
@@ -1019,7 +1084,7 @@ function readFile(file){
      let z=String(r.result||'');
      let i=z.indexOf(',');
      if(i<0){
-       reject(new Error('تعذر قراءة الملف'));
+       reject(new Error('鬲毓匕乇 賯乇丕亍丞 丕賱賲賱賮'));
        return;
      }
      resolve({
@@ -1030,7 +1095,7 @@ function readFile(file){
        size:file.size
      });
    };
-   r.onerror=()=>reject(new Error('تعذر قراءة الملف: '+file.name));
+   r.onerror=()=>reject(new Error('鬲毓匕乇 賯乇丕亍丞 丕賱賲賱賮: '+file.name));
    r.readAsDataURL(file);
  });
 }
@@ -1039,7 +1104,7 @@ async function handleFiles(list){
  closeAttachMenu();
  for(const file of Array.from(list||[])){
    if(attachments.length>=5){
-     alert('يمكن إرفاق 5 ملفات كحد أقصى في الرسالة الواحدة.');
+     alert('賷賲賰賳 廿乇賮丕賯 5 賲賱賮丕鬲 賰丨丿 兀賯氐賶 賮賷 丕賱乇爻丕賱丞 丕賱賵丕丨丿丞.');
      break;
    }
    try{
@@ -1056,8 +1121,8 @@ async function handleFiles(list){
 function isImagePrompt(text){
  const t=String(text||'').trim();
  if(!t) return false;
- const action=/(?:أنشئ|انشئ|اصنع|إصنع|اعمل|أعمل|صمم|اصمم|صمّم|ارسم|ولّد|ولد|generate|create|design|make|draw|render)/i;
- const image=/(?:صورة|صور|تصميم|بوستر|ملصق|لوجو|شعار|إنفوجرافيك|انفوجرافيك|خلفية|غلاف|بنر|image|images|picture|poster|logo|illustration|infographic|banner|cover)/i;
+ const action=/(?:兀賳卮卅|丕賳卮卅|丕氐賳毓|廿氐賳毓|丕毓賲賱|兀毓賲賱|氐賲賲|丕氐賲賲|氐賲賾賲|丕乇爻賲|賵賱賾丿|賵賱丿|generate|create|design|make|draw|render)/i;
+ const image=/(?:氐賵乇丞|氐賵乇|鬲氐賲賷賲|亘賵爻鬲乇|賲賱氐賯|賱賵噩賵|卮毓丕乇|廿賳賮賵噩乇丕賮賷賰|丕賳賮賵噩乇丕賮賷賰|禺賱賮賷丞|睾賱丕賮|亘賳乇|image|images|picture|poster|logo|illustration|infographic|banner|cover)/i;
  return action.test(t) && image.test(t);
 }
 
@@ -1067,11 +1132,12 @@ async function sendMessage(forced){
 
  let p=(forced??input.value).trim();
  if(!p&&!attachments.length)return;
+ if(!getToken()){showAuth('爻噩賾賱 丿禺賵賱賰 丕賱兀賵賱.');return}
 
  let sent=attachments.map(({name,mimeType,data,size})=>({name,mimeType,data,size}));
  let preview=attachments.map(({name,mimeType,preview})=>({name,mimeType,preview}));
 
- add(p||'مرفق','user',true,preview);
+ add(p||'賲乇賮賯','user',true,preview);
 
  input.value='';
  attachments=[];
@@ -1099,7 +1165,8 @@ async function sendMessage(forced){
      message:p,
      history:old,
      attachments:sent,
-     model:settings.model||'auto'
+     model:settings.model||'auto',
+     token:getToken()
    };
 
    let r=await fetch(API_URL,{
@@ -1115,10 +1182,15 @@ async function sendMessage(forced){
    try{
      data=JSON.parse(raw);
    }catch(e){
-     throw Error('استجابة غير صالحة من الخادم');
+     throw Error('丕爻鬲噩丕亘丞 睾賷乇 氐丕賱丨丞 賲賳 丕賱禺丕丿賲');
    }
 
    removeTyping();
+
+   if(data.code==='AUTH'){
+     forceLogin(data.error);
+     return;
+   }
 
    if(!r.ok||data.ok===false){
      throw Error(data.error||('HTTP '+r.status));
@@ -1131,9 +1203,9 @@ async function sendMessage(forced){
    }
 
    if(data.type==='image' && data.image && data.image.data){
-     add(answer||'تم إنشاء الصورة بنجاح.','ai',true,[],data.image,Date.now(),true);
+     add(answer||'鬲賲 廿賳卮丕亍 丕賱氐賵乇丞 亘賳噩丕丨.','ai',true,[],data.image,Date.now(),true);
    }else{
-     add(answer||'لم يصل رد من النموذج. حاول مرة أخرى.','ai',true,[],null,Date.now(),true);
+     add(answer||'賱賲 賷氐賱 乇丿 賲賳 丕賱賳賲賵匕噩. 丨丕賵賱 賲乇丞 兀禺乇賶.','ai',true,[],null,Date.now(),true);
    }
 
    saveCurrent();
@@ -1141,12 +1213,12 @@ async function sendMessage(forced){
  }catch(e){
    removeTyping();
    if(e && e.name==='AbortError'){
-     add('⏹ تم إيقاف التوليد.','ai',false);
+     add('鈴� 鬲賲 廿賷賯丕賮 丕賱鬲賵賱賷丿.','ai',false);
    }else{
      add(
-       'تعذر تنفيذ الطلب حاليًا.\n\n'+
-       (e.message||'خطأ غير معروف')+
-       '\n\nتأكد من اتصال الخادم وحاول مرة أخرى.',
+       '鬲毓匕乇 鬲賳賮賷匕 丕賱胤賱亘 丨丕賱賷賸丕.\n\n'+
+       (e.message||'禺胤兀 睾賷乇 賲毓乇賵賮')+
+       '\n\n鬲兀賰丿 賲賳 丕鬲氐丕賱 丕賱禺丕丿賲 賵丨丕賵賱 賲乇丞 兀禺乇賶.',
        'ai',false
      );
    }
@@ -1220,7 +1292,7 @@ function renderHistory(){
  });
 
  if(!a.length){
-   box.innerHTML='<div class="empty">'+(q?'لا توجد نتائج مطابقة للبحث.':'لم تبدأ أي محادثة محفوظة بعد.<br>ابدأ محادثة جديدة وستُحفظ هنا.')+'</div>';
+   box.innerHTML='<div class="empty">'+(q?'賱丕 鬲賵噩丿 賳鬲丕卅噩 賲胤丕亘賯丞 賱賱亘丨孬.':'賱賲 鬲亘丿兀 兀賷 賲丨丕丿孬丞 賲丨賮賵馗丞 亘毓丿.<br>丕亘丿兀 賲丨丕丿孬丞 噩丿賷丿丞 賵爻鬲購丨賮馗 賴賳丕.')+'</div>';
    return;
  }
 
@@ -1230,7 +1302,7 @@ function renderHistory(){
 
    let ic=document.createElement('span');
    ic.className='hicon';
-   ic.textContent=item.pinned?'📌':'💬';
+   ic.textContent=item.pinned?'馃搶':'馃挰';
    b.appendChild(ic);
 
    let main=document.createElement('div');
@@ -1238,12 +1310,12 @@ function renderHistory(){
 
    let t=document.createElement('span');
    t.className='htitle';
-   t.textContent=item.title||'محادثة';
+   t.textContent=item.title||'賲丨丕丿孬丞';
    main.appendChild(t);
 
    let d=document.createElement('span');
    d.className='hdate';
-   d.textContent=fmtDate(item.date)+((item.messages||[]).length?' · '+item.messages.length+' رسالة':'');
+   d.textContent=fmtDate(item.date)+((item.messages||[]).length?' 路 '+item.messages.length+' 乇爻丕賱丞':'');
    main.appendChild(d);
 
    b.appendChild(main);
@@ -1252,8 +1324,8 @@ function renderHistory(){
    acts.className='hacts';
 
    let pin=document.createElement('button');
-   pin.title=item.pinned?'إلغاء التثبيت':'تثبيت';
-   pin.textContent='📌';
+   pin.title=item.pinned?'廿賱睾丕亍 丕賱鬲孬亘賷鬲':'鬲孬亘賷鬲';
+   pin.textContent='馃搶';
    pin.onclick=e=>{
      e.stopPropagation();
      let all=getChats();
@@ -1264,11 +1336,11 @@ function renderHistory(){
    };
 
    let rn=document.createElement('button');
-   rn.title='إعادة تسمية';
-   rn.textContent='✏️';
+   rn.title='廿毓丕丿丞 鬲爻賲賷丞';
+   rn.textContent='鉁忥笍';
    rn.onclick=e=>{
      e.stopPropagation();
-     let name=prompt('اسم المحادثة:',item.title||'');
+     let name=prompt('丕爻賲 丕賱賲丨丕丿孬丞:',item.title||'');
      if(name===null)return;
      let all=getChats();
      let it=all.find(x=>x.id===item.id);
@@ -1281,12 +1353,12 @@ function renderHistory(){
    };
 
    let del=document.createElement('button');
-   del.title='حذف';
-   del.textContent='🗑';
+   del.title='丨匕賮';
+   del.textContent='馃棏';
    del.className='del';
    del.onclick=e=>{
      e.stopPropagation();
-     if(!confirm('حذف هذه المحادثة؟'))return;
+     if(!confirm('丨匕賮 賴匕賴 丕賱賲丨丕丿孬丞責'))return;
      setChats(getChats().filter(x=>x.id!==item.id));
      if(item.id===currentChatId)newChat();
      renderHistory();
@@ -1332,12 +1404,12 @@ function newChat(){
 /* ---------- Export chat ---------- */
 function exportChat(){
  if(!history.length){
-   alert('لا توجد محادثة لتنزيلها.');
+   alert('賱丕 鬲賵噩丿 賲丨丕丿孬丞 賱鬲賳夭賷賱賴丕.');
    return;
  }
- let lines=['Saedni AI — محادثة','التاريخ: '+new Date().toLocaleString('ar-EG'),''];
+ let lines=['Saedni AI 鈥� 賲丨丕丿孬丞','丕賱鬲丕乇賷禺: '+new Date().toLocaleString('ar-EG'),''];
  history.forEach(m=>{
-   lines.push((m.role==='user'?'👤 أنت':'🤖 Saedni AI')+' ('+fmtTime(m.ts)+'):');
+   lines.push((m.role==='user'?'馃懁 兀賳鬲':'馃 Saedni AI')+' ('+fmtTime(m.ts)+'):');
    lines.push(m.text);
    lines.push('');
  });
@@ -1356,14 +1428,14 @@ function openSide(){
  document.getElementById('sidebar').classList.add('open');
  document.getElementById('overlay').classList.add('open');
  document.body.classList.add('side-open');
- document.getElementById('open').textContent='✕';
+ document.getElementById('open').textContent='鉁�';
 }
 
 function closeSide(){
  document.getElementById('sidebar').classList.remove('open');
  document.getElementById('overlay').classList.remove('open');
  document.body.classList.remove('side-open');
- document.getElementById('open').textContent='☰';
+ document.getElementById('open').textContent='鈽�';
 }
 
 function theme(){
@@ -1384,18 +1456,6 @@ function bindSuggestions(){
  document.querySelectorAll('.suggestion').forEach(b=>{
    b.onclick=()=>sendMessage(b.dataset.p);
  });
-}
-
-function loadAccount(){
- try{
-   let a=JSON.parse(localStorage.getItem(ACCOUNT)||'null');
-   if(a?.name){
-     document.getElementById('userName').textContent=a.name;
-     document.getElementById('userEmail').textContent=a.email||'حساب محلي';
-     document.getElementById('avatar').textContent=a.name.trim().charAt(0)||'ز';
-     document.getElementById('accountBtn').querySelector('span').textContent='تعديل الحساب';
-   }
- }catch(e){}
 }
 
 function syncSettingsUI(){
@@ -1477,7 +1537,7 @@ document.getElementById('theme').onclick=theme;
 document.getElementById('themetop').onclick=theme;
 
 document.getElementById('clear').onclick=()=>{
- if(confirm('هل تريد مسح كل المحادثات المحفوظة من هذا الجهاز؟')){
+ if(confirm('賴賱 鬲乇賷丿 賲爻丨 賰賱 丕賱賲丨丕丿孬丕鬲 丕賱賲丨賮賵馗丞 賲賳 賴匕丕 丕賱噩賴丕夭責')){
    localStorage.removeItem(KEY);
    currentChatId=null;
    renderHistory();
@@ -1485,27 +1545,10 @@ document.getElementById('clear').onclick=()=>{
 };
 
 document.getElementById('accountBtn').onclick=()=>{
- try{
-   let a=JSON.parse(localStorage.getItem(ACCOUNT)||'null');
-   document.getElementById('accountName').value=a?.name||'';
-   document.getElementById('accountEmail').value=a?.email||'';
- }catch(e){}
+ document.getElementById('accountUserLabel').textContent=getUser();
+ document.getElementById('pwMsg').textContent='';
  openModal('accountModal');
  closeSide();
-};
-
-document.getElementById('saveAccount').onclick=()=>{
- let name=document.getElementById('accountName').value.trim();
- let email=document.getElementById('accountEmail').value.trim();
-
- if(!name){
-   alert('اكتب الاسم أولًا.');
-   return;
- }
-
- localStorage.setItem(ACCOUNT,JSON.stringify({name,email}));
- loadAccount();
- closeModal('accountModal');
 };
 
 document.getElementById('settingsBtn').onclick=()=>{
@@ -1545,7 +1588,7 @@ mic.onclick=()=>{
  let R=window.SpeechRecognition||window.webkitSpeechRecognition;
 
  if(!R){
-   alert('الإدخال الصوتي غير مدعوم في هذا المتصفح.');
+   alert('丕賱廿丿禺丕賱 丕賱氐賵鬲賷 睾賷乇 賲丿毓賵賲 賮賷 賴匕丕 丕賱賲鬲氐賮丨.');
    return;
  }
 
@@ -1562,7 +1605,7 @@ mic.onclick=()=>{
  recognition.onstart=()=>{
    recording=true;
    mic.classList.add('recording');
-   mic.textContent='⏹️';
+   mic.textContent='鈴癸笍';
  };
 
  recognition.onresult=e=>{
@@ -1575,30 +1618,245 @@ mic.onclick=()=>{
  recognition.onerror=()=>{
    recording=false;
    mic.classList.remove('recording');
-   mic.textContent='🎙️';
+   mic.textContent='馃帣锔�';
  };
 
  recognition.onend=()=>{
    recording=false;
    mic.classList.remove('recording');
-   mic.textContent='🎙️';
+   mic.textContent='馃帣锔�';
  };
 
  recognition.start();
 };
+
+/* ---------- Auth (invite-only accounts) ---------- */
+const TOKEN_KEY='saedni_token';
+const USER_KEY='saedni_user';
+const LASTUSER_KEY='saedni_last_user';
+const INVITES_CACHE='saedni_invites';
+let authMode='login',authBusy=false;
+
+function getToken(){return localStorage.getItem(TOKEN_KEY)||''}
+function getUser(){return localStorage.getItem(USER_KEY)||''}
+
+async function api(payload){
+ const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+ const raw=await r.text();
+ try{return JSON.parse(raw)}catch(e){throw Error('丕爻鬲噩丕亘丞 睾賷乇 氐丕賱丨丞 賲賳 丕賱禺丕丿賲')}
+}
+
+function applyUser(){
+ const u=getUser();
+ document.getElementById('userName').textContent=u||'夭丕卅乇';
+ document.getElementById('userEmail').textContent=u?'丨爻丕亘賰 賲賮毓賾賱':'爻噩賾賱 丿禺賵賱賰';
+ document.getElementById('avatar').textContent=(u||'夭').trim().charAt(0).toUpperCase();
+ document.getElementById('accountUserLabel').textContent=u;
+}
+
+function setAuthMode(m){
+ authMode=m;
+ const reg=m==='register';
+ document.getElementById('tabLogin').classList.toggle('active',!reg);
+ document.getElementById('tabRegister').classList.toggle('active',reg);
+ document.getElementById('inviteField').style.display=reg?'':'none';
+ document.getElementById('authPass').autocomplete=reg?'new-password':'current-password';
+ document.getElementById('authSubmit').textContent=reg?'廿賳卮丕亍 丕賱丨爻丕亘':'丿禺賵賱';
+ document.getElementById('authSub').textContent=reg?'丕賱鬲爻噩賷賱 亘丕賱丿毓賵丞 亘爻. 丕賰鬲亘 賰賵丿 丕賱丿毓賵丞 丕賱賱賷 噩丕賱賰 賲賳 氐丕丨亘賰.':'爻噩賾賱 丿禺賵賱賰 毓卮丕賳 鬲亘丿兀 鬲爻鬲禺丿賲 丕賱賲爻丕毓丿.';
+ document.getElementById('authHint').textContent=reg?'賲毓賳丿賰卮 賰賵丿責 丕胤賱亘 賵丕丨丿 賲賳 氐丕丨亘賰 丕賱賱賷 毓賳丿賴 丨爻丕亘 毓賱賶 Saedni AI.':'賳爻賷鬲 賰賱賲丞 丕賱爻乇責 賰賱賾賲 氐丕丨亘 丕賱鬲胤亘賷賯 賵賴賵 賷乇噩賾毓賴丕賱賰.';
+ document.getElementById('authError').textContent='';
+}
+
+function showAuth(msg){
+ document.getElementById('authScreen').classList.add('open');
+ closeSide();
+ document.querySelectorAll('.modal-backdrop.open').forEach(m=>closeModal(m.id));
+ document.getElementById('authError').textContent=msg||'';
+ setTimeout(()=>document.getElementById('authUser').focus(),50);
+}
+
+function hideAuth(){
+ document.getElementById('authScreen').classList.remove('open');
+}
+
+function clearSession(){
+ localStorage.removeItem(TOKEN_KEY);
+ localStorage.removeItem(USER_KEY);
+ localStorage.removeItem(INVITES_CACHE);
+}
+
+function forceLogin(msg){
+ clearSession();
+ applyUser();
+ showAuth(msg||'爻噩賾賱 丿禺賵賱賰 鬲丕賳賷.');
+}
+
+function onAuthSuccess(d){
+ const last=localStorage.getItem(LASTUSER_KEY);
+ if(last&&last!==d.username){
+   localStorage.removeItem(KEY); // 噩賴丕夭 賲卮鬲乇賰: 賲丕 賳毓乇囟卮 賲丨丕丿孬丕鬲 丨丿 鬲丕賳賷
+ }
+ localStorage.setItem(LASTUSER_KEY,d.username);
+ localStorage.setItem(TOKEN_KEY,d.token);
+ localStorage.setItem(USER_KEY,d.username);
+ if(Array.isArray(d.invites))localStorage.setItem(INVITES_CACHE,JSON.stringify(d.invites));
+ document.getElementById('authPass').value='';
+ document.getElementById('authInvite').value='';
+ hideAuth();
+ applyUser();
+ history=[];currentChatId=null;
+ renderHistory();
+ welcome();
+ if(authMode==='register')setTimeout(openInvites,300);
+}
+
+async function submitAuth(e){
+ e.preventDefault();
+ if(authBusy)return;
+ const username=document.getElementById('authUser').value.trim();
+ const password=document.getElementById('authPass').value;
+ const invite=document.getElementById('authInvite').value.trim();
+ const err=document.getElementById('authError');
+ const btn=document.getElementById('authSubmit');
+ err.textContent='';
+ if(!username||!password){err.textContent='丕賰鬲亘 丕爻賲 丕賱賲爻鬲禺丿賲 賵賰賱賲丞 丕賱爻乇.';return}
+ if(authMode==='register'&&!invite){err.textContent='丕賰鬲亘 賰賵丿 丕賱丿毓賵丞.';return}
+ authBusy=true;btn.disabled=true;
+ const old=btn.textContent;btn.textContent='賱丨馗丞...';
+ try{
+   const d=await api(authMode==='register'
+     ?{action:'register',username,password,invite}
+     :{action:'login',username,password});
+   if(!d.ok)throw Error(d.error||'丨氐賱 禺胤兀貙 丨丕賵賱 鬲丕賳賷.');
+   onAuthSuccess(d);
+ }catch(ex){
+   err.textContent=ex.message==='Failed to fetch'?'賲賮賷卮 丕鬲氐丕賱 亘丕賱爻賷乇賮乇. 丕鬲兀賰丿 賲賳 丕賱賳鬲 賵丨丕賵賱 鬲丕賳賷.':ex.message;
+ }finally{
+   authBusy=false;btn.disabled=false;btn.textContent=old;
+ }
+}
+
+async function copyText(text){
+ try{await navigator.clipboard.writeText(text);return true}catch(e){}
+ try{
+   const t=document.createElement('textarea');
+   t.value=text;t.style.cssText='position:fixed;opacity:0';
+   document.body.appendChild(t);t.select();
+   const ok=document.execCommand('copy');t.remove();return ok;
+ }catch(e){return false}
+}
+
+function siteLink(){return location.origin+location.pathname}
+
+function renderInvites(list){
+ const box=document.getElementById('invList');
+ const sum=document.getElementById('invSummary');
+ box.innerHTML='';
+ const free=list.filter(x=>!x.used).length;
+ sum.innerHTML=list.length
+   ?'賲毓丕賰 <b>'+free+'</b> 丿毓賵丞 賲鬲丕丨丞 賲賳 <b>'+list.length+'</b>. 賰賱 賰賵丿 亘賷卮鬲睾賱 賲乇丞 賵丕丨丿丞 賱氐丕丨亘 賵丕丨丿.'
+   :'賲賮賷卮 丿毓賵丕鬲 賱爻賴.';
+ list.forEach(x=>{
+   const row=document.createElement('div');
+   row.className='inv-row'+(x.used?' used':'');
+   const code=document.createElement('span');
+   code.className='inv-code';code.textContent=x.code;
+   const badge=document.createElement('span');
+   badge.className='inv-badge '+(x.used?'taken':'free');
+   badge.textContent=x.used?('丕鬲爻鬲禺丿賲'+(x.usedBy?' 路 '+x.usedBy:'')):'賲鬲丕丨';
+   const cp=document.createElement('button');
+   cp.type='button';cp.className='inv-btn';cp.textContent='馃搵 賳爻禺';cp.disabled=!!x.used;
+   cp.onclick=async()=>{
+     if(await copyText(x.code)){cp.textContent='鬲賲 鉁�';setTimeout(()=>cp.textContent='馃搵 賳爻禺',1300)}
+   };
+   const sh=document.createElement('button');
+   sh.type='button';sh.className='inv-btn';sh.textContent='馃摛';sh.title='賲卮丕乇賰丞 乇爻丕賱丞 丿毓賵丞';sh.disabled=!!x.used;
+   sh.onclick=async()=>{
+     const msg='丕丿禺賱 噩乇賾亘 Saedni AI貙 賲爻丕毓丿 匕賰丕亍 丕氐胤賳丕毓賷 賲噩丕賳賷 亘丕賱毓乇亘賷 馃\n'+siteLink()+'\n丕毓賲賱 丨爻丕亘 噩丿賷丿 賵丕爻鬲禺丿賲 賰賵丿 丕賱丿毓賵丞 丿賴: '+x.code;
+     try{
+       if(navigator.share){await navigator.share({text:msg});return}
+     }catch(e){if(e&&e.name==='AbortError')return}
+     if(await copyText(msg)){sh.textContent='鉁�';setTimeout(()=>sh.textContent='馃摛',1300)}
+   };
+   row.appendChild(code);row.appendChild(badge);row.appendChild(cp);row.appendChild(sh);
+   box.appendChild(row);
+ });
+}
+
+async function openInvites(){
+ closeSide();
+ openModal('invitesModal');
+ const st=document.getElementById('invStatus');
+ st.textContent='';
+ try{
+   const c=JSON.parse(localStorage.getItem(INVITES_CACHE)||'null');
+   if(Array.isArray(c))renderInvites(c);else document.getElementById('invSummary').textContent='噩丕乇賷 丕賱鬲丨賲賷賱...';
+ }catch(e){}
+ try{
+   const d=await api({action:'invites',token:getToken()});
+   if(d.code==='AUTH'){closeModal('invitesModal');forceLogin(d.error);return}
+   if(!d.ok)throw Error(d.error||'鬲毓匕乇 鬲丨賲賷賱 丕賱丿毓賵丕鬲.');
+   localStorage.setItem(INVITES_CACHE,JSON.stringify(d.invites));
+   renderInvites(d.invites);
+ }catch(e){st.textContent='鬲毓匕乇 鬲丨丿賷孬 丕賱賯丕卅賲丞: '+e.message}
+}
+
+async function changePassword(){
+ const msg=document.getElementById('pwMsg');
+ const oldPassword=document.getElementById('oldPass').value;
+ const newPassword=document.getElementById('newPass').value;
+ msg.className='form-msg';msg.textContent='';
+ if(!oldPassword||newPassword.length<6){msg.className='form-msg err';msg.textContent='丕賰鬲亘 賰賱賲丞 丕賱爻乇 丕賱丨丕賱賷丞 賵丕賱噩丿賷丿丞 (6 丨乇賵賮 毓賱賶 丕賱兀賯賱).';return}
+ const b=document.getElementById('changePassBtn');b.disabled=true;
+ try{
+   const d=await api({action:'change_password',token:getToken(),oldPassword,newPassword});
+   if(d.code==='AUTH'){closeModal('accountModal');forceLogin(d.error);return}
+   if(!d.ok)throw Error(d.error||'鬲毓匕乇 丕賱鬲睾賷賷乇.');
+   localStorage.setItem(TOKEN_KEY,d.token);
+   document.getElementById('oldPass').value='';document.getElementById('newPass').value='';
+   msg.className='form-msg ok';msg.textContent='鬲賲 鬲睾賷賷乇 賰賱賲丞 丕賱爻乇 鉁�';
+ }catch(e){msg.className='form-msg err';msg.textContent=e.message}
+ finally{b.disabled=false}
+}
+
+function logout(){
+ clearSession();
+ history=[];currentChatId=null;
+ closeModal('accountModal');
+ applyUser();renderHistory();welcome();
+ setAuthMode('login');
+ showAuth('');
+}
+
+async function initAuth(){
+ applyUser();
+ if(!getToken()){showAuth('');return}
+ try{
+   const d=await api({action:'me',token:getToken()});
+   if(d&&d.code==='AUTH')forceLogin(d.error);
+   else if(d&&d.ok&&d.username){localStorage.setItem(USER_KEY,d.username);applyUser()}
+ }catch(e){/* 賲賮賷卮 賳鬲: 爻賷亘 丕賱賲爻鬲禺丿賲 賷賰賲賱 */}
+}
+
+document.getElementById('authForm').addEventListener('submit',submitAuth);
+document.getElementById('tabLogin').onclick=()=>setAuthMode('login');
+document.getElementById('tabRegister').onclick=()=>setAuthMode('register');
+document.getElementById('invitesBtn').onclick=openInvites;
+document.getElementById('changePassBtn').onclick=changePassword;
+document.getElementById('logoutBtn').onclick=logout;
 
 /* ---------- Initial state ---------- */
 if(localStorage.getItem(THEME)==='dark'){
  document.body.classList.add('dark');
 }
 
-loadAccount();
 renderHistory();
 welcome();
 renderAttachments();
 resize();
 syncSettingsUI();
 updateSendState();
+initAuth();
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}
 </script>
 </body>
