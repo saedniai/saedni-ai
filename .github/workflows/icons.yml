@@ -1,0 +1,24 @@
+name: icons
+on:
+  push:
+    paths:
+      - '.github/workflows/icons.yml'
+permissions:
+  contents: write
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: make
+        run: |
+          echo 'iVBORw0KGgoAAAANSUhEUgAAAMAAAADABAMAAACg8nE0AAAAGFBMVEX+/v/9/f/8/P/6+v74+P719f6trPZQTuuo/L8rAAAFfUlEQVR42u2by28bRRzHv7NO25iE7M66IQmF2t4EVa0oTWxXEDWopKVIXNryECcuIIU7QpT/As6oUkEcKdBSEFyaqBUcUB92SouQSLy2+0iQGu/s4lI7abLDwbuOHbfKppmVOIwvcWbt+ezvMb+XvOQThPtSIAESIAESIAESIAESIAESIAESIAESIAESIAESIAH/J0BH8I8ydrkIAMphqlHxAOskQAwKMHbZBvaPBGRExgJ9jM/8tQe8xubn51ltUR8wtNPblkinMACfud6PvO3/W2XVHenFO4vVAIhgRi5E4uxC8wI5f37ScXFGkBctoKT3rNhN+6eAlJorDIsBuF/ZLF9KNKusYKRZQU9Mi/Gi/FjWLTOtecmkFhgp2EIA7vWuMoDWzRgAS9BJnk0UQz3JvGLZocaiJa1V/cIBt51EXQKNxpIaKABKAVBBKuJnVLfu+wa5mSYmM3TOkU2XFYsRIQDXcxZ+c5x8g4wJwrE9RWLUtYVI8ED191FnbrxDtcMA43fPknFTUbSKAEBF8wBk708f1d9R6B+Uv0urSSbCyE4j7m75cHWVDn0cV1RbBKDk7/KM3rJOhhKTI5oAFeWWAQCxEbp2N/1EVoAEnPvvzrVdIykR4bp+30RdOd5+jYwIAHg3qRS0cEKFpyLuDIYVi/wbJ2EBvMPqLoQFKHh//7FDAnj7JpUz4QCIn234sZAk8Ixb5MvFcAC+M/HIlceywnq1Kfntfr24tuce/LKDigegb65Wf1OrHfrxaUSFly2qn3DASWbhdOQtqokFLK+iijunB+OXikeSVCSgt2Fa2+lBkikZfunGm0lxAFJpVI5qVocJRoyDX3e8T0UZmfT1L/G6nWuomrUoq87ZT4zO/DAq6hx0twZSBoBZUx17PrUFAZ4695DE6Jr3jgWridcHkKMPSwWWmp89JShUDJ5NtKd7OIo+9pkYgPKuQ9a6ZRKWyW4dsMUEu97iIYMebvZLPgmLZYvbvxDTiJPRajW6NGjVVpdqAOD2PdvdKUICKPoUddvLOHLjTk5QPtAnrsbaiyyu7bOEqAhANF37d0lrs2l8a1enEAkAYgyZBT1pgBiEev2ZcjBXuiBuIKWfYKcr44YbY4aduGoDcHN2JSJIRQBAoplE5Wej+mD3lmxdWXYNyqggFXlS7Jp4ckq1nNXgMQahAIDumui+aDSyJu+whdmggXhxyEn4BSVWREsAALEuZzU92CEA0GdovhVKYUgA7DRU//uhSICO6ynfd6dDAZCXda21vBcMwM5iYk2LJRgANWjP9tiA2wkAUA6IaqHa21vvwiubBTyqNqkPgnlx0xLEsw+TwfFiBXc2Py/qOtVO4N9f84Yk8U17kXXv6Mk2Ao/T4YDesG7CmTP5tsm1zZm59U+7XsRoz296VsFzpf0rrWpaIEXfu3qFnIOe0t7Pmybt1pcN51HIplVkshpxo4tjC98OYLETAJu/3z8/7welWy8JyGi81DHCSqnZW+MWw/KF7S/c7G4c6NdEqIike/JXDVMZZhws8mo8Z3lpRkmu66XBJMgzaueZ6c1haWMeG8vYmhAjMzBeAGvq0uqSddkXQ4umAMAjxTcgQkWPrle1RKgSgP8uIOFQAtLe1VNQ6Hr2uIBRwsXj5WvDBVJ2eLNykqCI7egTEex2/a33TCm7o/drzavV3hQf+PV1ETlZH8HUUPwKSbXad3ZKoe8J6vSNib3ZjKu3HKnI2z1EDzSZCtKARPU90390JQh8LekD/eWFQ8EmXyTYgz6c3T0LUEo0cIYCnhsPOi8igZ8k4ja7UgDZN42MsYEfDZANPqrEiLaxL2w0VGx4cip/eiIBEiABEiABEiABEiABEiABEiABEiABEiABErCh138/m8yLI/HjswAAAABJRU5ErkJggg==' | base64 -d > icon-192.png
+          pip install -q pillow
+          python3 -c "from PIL import Image;Image.open('icon-192.png').convert('RGBA').resize((512,512),Image.LANCZOS).save('icon-512.png')"
+          git rm -q --ignore-unmatch IMG-20261126-WA0081.png IMG-20261126-WA0081.jpg
+          printf '%s' '{"name":"Saedni AI","short_name":"Saedni","start_url":"./","scope":"./","display":"standalone","background_color":"#0b1020","theme_color":"#0b1020","lang":"ar","dir":"rtl","description":"مساعد ذكاء اصطناعي عربي للدردشة","id":"./","icons":[{"src":"icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},{"src":"icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"}]}' > manifest.webmanifest
+          git config user.name bot
+          git config user.email bot@example.com
+          git add -A
+          git commit -m icons
+          git push
