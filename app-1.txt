@@ -280,6 +280,50 @@ body.side-open{overflow:hidden}
 .form-msg.err{color:var(--danger)}.form-msg.ok{color:var(--ok)}
 
 /* Mobile */
+
+/* ---------- v22: \u0627\u0644\u0628\u0627\u0642\u0627\u062A \u0627\u0644\u0630\u0647\u0628\u064A\u0629 + \u0634\u0627\u062A \u0627\u0644\u062F\u0639\u0645 ---------- */
+.pro-badge{display:inline-block;margin-inline-start:auto;padding:2px 8px;border-radius:8px;font-size:9.5px;font-weight:800;letter-spacing:.6px;color:#3b2b00;background:linear-gradient(135deg,#ffe9a8,#e8c158);box-shadow:0 2px 6px rgba(212,175,55,.35)}
+.sidebtn.ispro{background:linear-gradient(135deg,rgba(255,233,168,.32),rgba(232,193,88,.2));border:1px solid rgba(212,175,55,.35)}
+.plans-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:6px 0 4px}
+.plan-card{position:relative;border:1px solid var(--line);border-radius:18px;padding:16px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+.plan-card.gold{border:1.5px solid rgba(212,175,55,.55);background:linear-gradient(160deg,rgba(255,236,179,.22),rgba(255,255,255,0) 58%),var(--card)}
+body.dark .plan-card.gold{background:linear-gradient(160deg,rgba(212,175,55,.16),rgba(255,255,255,0) 58%),var(--card)}
+.plan-card.gold:before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,#f7d774,#c9a227,#f7d774)}
+.plan-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.plan-top h3{margin:0;font-size:18px;font-weight:800}
+.plan-card.gold .plan-top h3{color:#b8860b}
+body.dark .plan-card.gold .plan-top h3{color:#f0cf6d}
+.plan-tag{font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;color:#3b2b00;background:linear-gradient(135deg,#ffe9a8,#e8c158);white-space:nowrap}
+.plan-tagline{margin:6px 0 0;color:var(--muted);font-size:12.5px;line-height:1.7}
+.plan-price{margin:12px 0 4px;font-size:14px;color:var(--muted)}
+.plan-price b{font-size:26px;color:var(--text)}
+.plan-card.gold .plan-price b{color:#b8860b}
+body.dark .plan-card.gold .plan-price b{color:#f0cf6d}
+.plan-feats{list-style:none;margin:10px 0 14px;padding:0;display:grid;gap:7px;font-size:13px}
+.plan-feats li{display:flex;gap:7px;align-items:flex-start;line-height:1.6}
+.plan-feats li:before{content:"\2713";color:#b8860b;font-weight:800}
+.plan-btn{width:100%;padding:11px;border-radius:13px;font-weight:800;font-size:14px;color:#3b2b00;background:linear-gradient(135deg,#ffe9a8,#e8c158)}
+.plan-btn:disabled{opacity:.6;cursor:wait}
+.plan-card:not(.gold) .plan-btn{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff}
+.plan-empty{color:var(--muted);font-size:13px;text-align:center;padding:18px}
+#plansNote:empty{display:none}
+.support-fab{position:fixed;inset-inline-start:18px;bottom:96px;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:22px;color:#3b2b00;background:linear-gradient(135deg,#ffe9a8,#e8c158);box-shadow:0 10px 26px rgba(212,175,55,.42);z-index:60}
+.support-panel{position:fixed;inset-inline-start:14px;bottom:158px;width:min(360px,calc(100vw - 28px));height:min(440px,62dvh);background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 20px 50px rgba(2,6,23,.28);display:none;flex-direction:column;overflow:hidden;z-index:61}
+.support-panel.open{display:flex}
+.support-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,rgba(255,233,168,.3),rgba(232,193,88,.12))}
+.support-head strong{font-size:14.5px}
+.support-head small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.support-msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--bg)}
+.support-row{max-width:85%;padding:9px 12px;border-radius:14px;font-size:13.5px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.support-row.in{align-self:flex-start;background:var(--card);border:1px solid var(--line)}
+.support-row.out{align-self:flex-end;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff}
+.support-hint{color:var(--muted);font-size:12.5px;text-align:center;padding:16px 8px;line-height:1.8}
+.support-form{display:flex;gap:7px;padding:9px;border-top:1px solid var(--line);background:var(--card)}
+.support-form textarea{flex:1;resize:none;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:12px;padding:9px 11px;font-size:13.5px;max-height:90px}
+.support-note{padding:0 12px 10px;color:var(--muted);font-size:11px;line-height:1.7}
+.status.ok{color:var(--ok)}
+.status.err{color:var(--danger)}
+
 @media(max-width:760px){
  .sidebar{position:fixed;top:0;bottom:0;right:0;width:min(88vw,330px);transform:translateX(105%);transition:transform .22s ease;box-shadow:-15px 0 40px rgba(0,0,0,.18);overflow:auto}
  .sidebar.open{transform:none}
@@ -326,10 +370,12 @@ body.side-open{overflow:hidden}
           <strong id="userName">&#1586;&#1575;&#1574;&#1585;</strong>
           <small id="userEmail">&#1587;&#1580;&#1617;&#1604; &#1583;&#1582;&#1608;&#1604;&#1603;</small>
         </div>
+        <span class="pro-badge" id="proBadge" style="display:none">PRO</span>
       </div>
       <button class="sidebtn" id="loginBtn">&#128273; <span>&#1578;&#1587;&#1580;&#1610;&#1604; &#1575;&#1604;&#1583;&#1582;&#1608;&#1604; / &#1581;&#1587;&#1575;&#1576; &#1580;&#1583;&#1610;&#1583;</span></button>
       <button class="sidebtn" id="accountBtn">&#128100; <span>&#1581;&#1587;&#1575;&#1576;&#1610;</span></button>
       <button class="sidebtn" id="invitesBtn">&#127903;&#65039; <span>&#1583;&#1593;&#1608;&#1575;&#1578;&#1610;</span></button>
+      <button class="sidebtn" id="plansBtn">&#11088; <span>&#x62E;&#x637;&#x637; &#x627;&#x644;&#x627;&#x634;&#x62A;&#x631;&#x627;&#x643;</span></button>
       <button class="sidebtn" id="settingsBtn">&#9881;&#65039; <span>&#1575;&#1604;&#1573;&#1593;&#1583;&#1575;&#1583;&#1575;&#1578;</span></button>
       <button class="sidebtn" id="theme">&#9680; <span>&#1578;&#1594;&#1610;&#1610;&#1585; &#1575;&#1604;&#1605;&#1592;&#1607;&#1585;</span></button>
       <button class="sidebtn" id="clear">&#128465; <span>&#1605;&#1587;&#1581; &#1603;&#1604; &#1575;&#1604;&#1605;&#1581;&#1575;&#1583;&#1579;&#1575;&#1578;</span></button>
@@ -384,6 +430,34 @@ body.side-open{overflow:hidden}
   </div>
 </div>
 </section>
+</div>
+
+<!-- Plans (v22) -->
+<div class="modal-backdrop" id="plansModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>&#11088; <span id="plansTitle">&#x62E;&#x637;&#x637; &#x627;&#x644;&#x627;&#x634;&#x62A;&#x631;&#x627;&#x643;</span></h2>
+      <button class="close-modal" data-close="plansModal">&#10005;</button>
+    </div>
+    <p class="account-note" id="plansNote"></p>
+    <div class="plans-grid" id="plansGrid"></div>
+    <div class="status" id="plansStatus"></div>
+  </div>
+</div>
+
+<!-- Support (v22) -->
+<button class="support-fab" id="supportFab" type="button" title="&#x627;&#x644;&#x62F;&#x639;&#x645; &#x627;&#x644;&#x641;&#x646;&#x64A;">&#128172;</button>
+<div class="support-panel" id="supportPanel">
+  <div class="support-head">
+    <div><strong>&#x627;&#x644;&#x62F;&#x639;&#x645; &#x627;&#x644;&#x641;&#x646;&#x64A;</strong><small>&#x628;&#x646;&#x631;&#x62F; &#x639;&#x644;&#x64A;&#x643; &#x647;&#x646;&#x627;</small></div>
+    <button class="close-modal" id="supportClose" type="button">&#10005;</button>
+  </div>
+  <div class="support-msgs" id="supportMsgs"></div>
+  <div class="support-form">
+    <textarea id="supportText" rows="1" placeholder="&#x627;&#x643;&#x62A;&#x628; &#x631;&#x633;&#x627;&#x644;&#x62A;&#x643; &#x644;&#x644;&#x62F;&#x639;&#x645;..."></textarea>
+    <button class="action send" id="supportSend" type="button">&#10148;</button>
+  </div>
+  <div class="support-note" id="supportNote">&#x644;&#x648; &#x645;&#x62D;&#x62A;&#x627;&#x62C; &#x645;&#x633;&#x627;&#x639;&#x62F;&#x629; &#x641;&#x64A; &#x623;&#x64A; &#x62D;&#x627;&#x62C;&#x629; &#x627;&#x643;&#x62A;&#x628; &#x647;&#x646;&#x627;.</div>
 </div>
 
 <!-- Account -->
@@ -1904,6 +1978,7 @@ function onAuthSuccess(d){
  document.getElementById('authInvite').value='';
  hideAuth();
  applyUser();
+ applyPlan(d);
  history=[];currentChatId=null;
  renderHistory();
  welcome();
@@ -2031,7 +2106,7 @@ async function logout(){
  localStorage.setItem(LASTUSER_KEY,''); // \u0631\u062c\u0639\u0646\u0627 \u0648\u0636\u0639 \u0627\u0644\u0632\u0627\u0626\u0631
  history=[];currentChatId=null;
  closeModal('accountModal');
- applyUser();renderHistory();welcome();
+ applyUser();applyPlan({});renderHistory();welcome();
  setAuthMode('login');
 }
 
@@ -2043,7 +2118,7 @@ async function initAuth(){
    const d=await api({action:'me',token:getToken()});
    if(d&&d.code==='AUTH'){clearSession();applyUser()} // \u062c\u0644\u0633\u0629 \u0645\u0646\u062a\u0647\u064a\u0629: \u064a\u0643\u0645\u0644 \u0643\u0632\u0627\u0626\u0631 \u0628\u0647\u062f\u0648\u0621
    else if(d&&d.ok&&d.username){
-     localStorage.setItem(USER_KEY,d.username);applyUser();
+     localStorage.setItem(USER_KEY,d.username);applyUser();applyPlan(d);
      if(!localStorage.getItem(MIGRATED_KEY)){ // \u0623\u0648\u0644 \u062a\u062d\u0645\u064a\u0644 \u0628\u0639\u062f \u0627\u0644\u062a\u062d\u062f\u064a\u062b: \u0645\u062d\u0627\u062f\u062b\u0627\u062a \u0627\u0644\u062c\u0647\u0627\u0632 \u0627\u0644\u0642\u062f\u064a\u0645\u0629 \u062a\u0628\u0642\u0649 \u0628\u062a\u0627\u0639\u0629 \u0627\u0644\u062d\u0633\u0627\u0628 \u0627\u0644\u0645\u0641\u062a\u0648\u062d
        localStorage.setItem(MIGRATED_KEY,'1');
        const legacy=(()=>{try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []}})();
@@ -2067,6 +2142,172 @@ document.getElementById('invitesBtn').onclick=openInvites;
 document.getElementById('changePassBtn').onclick=changePassword;
 document.getElementById('logoutBtn').onclick=logout;
 
+
+/* ---------- v22: plans + support ---------- */
+const PLAN_KEYS={plan:'saedni_plan',pro:'saedni_pro',until:'saedni_until'};
+let lastPlans=[];
+
+function applyPlan(d){
+ try{
+  localStorage.setItem(PLAN_KEYS.plan,(d&&d.plan)||'');
+  localStorage.setItem(PLAN_KEYS.pro,(d&&d.pro)?'1':'');
+  localStorage.setItem(PLAN_KEYS.until,(d&&d.paidUntil)||'');
+ }catch(e){}
+ renderPro();
+}
+
+function renderPro(){
+ const pro=localStorage.getItem(PLAN_KEYS.pro)==='1';
+ const b=document.getElementById('proBadge');
+ if(b)b.style.display=pro?'':'none';
+ const pb=document.getElementById('plansBtn');
+ if(pb)pb.classList.toggle('ispro',pro);
+ if(pro){
+  const uc=document.getElementById('userEmail');
+  const until=localStorage.getItem(PLAN_KEYS.until);
+  const ms=until?Date.parse(until):0;
+  if(uc)uc.textContent='Saedni Pro'+(ms?' \u00B7 \u0644\u062D\u062F '+fmtDate(ms):'');
+ }
+}
+
+function planDur(d){
+ if(!d)return '';
+ if(d>=365)return '\u0633\u0646\u0629';
+ if(d>=30)return Math.round(d/30)+' \u0634\u0647\u0631';
+ return d+' \u064A\u0648\u0645';
+}
+
+async function openPlans(){
+ openModal('plansModal');
+ const grid=document.getElementById('plansGrid');
+ const note=document.getElementById('plansNote');
+ const st=document.getElementById('plansStatus');
+ st.className='status';st.textContent='';
+ grid.innerHTML='<div class="plan-empty">\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...</div>';
+ try{
+  const d=await api({action:'plans'});
+  if(!d.ok)throw Error(d.error||'\u062A\u0639\u0630\u0631 \u062A\u062D\u0645\u064A\u0644 \u0627\u0644\u0628\u0627\u0642\u0627\u062A.');
+  lastPlans=d.plans||[];
+  renderPlans(lastPlans);
+  note.textContent=d.note||'';
+  document.getElementById('plansTitle').textContent=d.title||'\u062E\u0637\u0637 \u0627\u0644\u0627\u0634\u062A\u0631\u0627\u0643';
+ }catch(e){
+  grid.innerHTML='';
+  st.className='status err';st.textContent=e.message||'\u062A\u0639\u0630\u0631 \u062A\u062D\u0645\u064A\u0644 \u0627\u0644\u0628\u0627\u0642\u0627\u062A.';
+ }
+}
+
+function renderPlans(list){
+ const grid=document.getElementById('plansGrid');
+ grid.innerHTML='';
+ if(!list||!list.length){grid.innerHTML='<div class="plan-empty">\u0645\u0641\u064A\u0634 \u0628\u0627\u0642\u0627\u062A \u0645\u062A\u0627\u062D\u0629 \u062F\u0644\u0648\u0642\u062A\u064A.</div>';return}
+ const isPro=localStorage.getItem(PLAN_KEYS.pro)==='1';
+ list.forEach(function(p){
+  const el=document.createElement('div');
+  el.className='plan-card'+(p.color==='gold'?' gold':'');
+  const feats=(p.features||[]).map(function(f){return '<li>'+esc(f)+'</li>'}).join('');
+  const price=p.price>0?('<b>'+esc(p.priceText)+'</b> <span>'+esc(p.currency)+'</span>'):'<b>\u0645\u062C\u0627\u0646\u064B\u0627</b>';
+  const dur=p.durationDays?('<small> / '+esc(planDur(p.durationDays))+'</small>'):'';
+  el.innerHTML='<div class="plan-top"><h3>'+esc(p.name)+'</h3>'+(p.badgeText?'<span class="plan-tag">'+esc(p.badgeText)+'</span>':'')+'</div>'+
+   (p.tagline?'<p class="plan-tagline">'+esc(p.tagline)+'</p>':'')+
+   '<div class="plan-price">'+price+dur+'</div>'+
+   '<ul class="plan-feats">'+feats+'</ul>'+
+   '<button class="plan-btn" type="button">'+(isPro?'\u0645\u062F\u062F \u0627\u0644\u0627\u0634\u062A\u0631\u0627\u0643':'\u0627\u0634\u062A\u0631\u0643 \u062F\u0644\u0648\u0642\u062A\u064A')+'</button>';
+  el.querySelector('.plan-btn').onclick=function(){subscribe(p.id,this)};
+  grid.appendChild(el);
+ });
+}
+
+async function subscribe(planId,btn){
+ const st=document.getElementById('plansStatus');
+ if(!getToken()){
+  closeModal('plansModal');
+  setAuthMode('login');
+  showAuth('\u0633\u062C\u0651\u0644 \u062F\u062E\u0648\u0644\u0643 \u0627\u0644\u0623\u0648\u0644 \u0639\u0634\u0627\u0646 \u062A\u0634\u062A\u0631\u0643 \u0641\u064A \u0627\u0644\u0628\u0627\u0642\u0629.');
+  return;
+ }
+ if(btn)btn.disabled=true;
+ st.className='status';st.textContent='\u0644\u062D\u0638\u0629...';
+ try{
+  const d=await api({action:'pro_subscribe',token:getToken(),planId:planId});
+  if(d.code==='AUTH'){closeModal('plansModal');forceLogin(d.error);return}
+  if(!d.ok)throw Error(d.error||'\u062A\u0639\u0630\u0631 \u062A\u0641\u0639\u064A\u0644 \u0627\u0644\u0628\u0627\u0642\u0629.');
+  if(d.pending){
+   st.className='status';st.textContent=d.message||'\u062A\u0645 \u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0637\u0644\u0628.';
+  }else{
+   applyPlan({plan:d.plan,pro:true,paidUntil:d.paidUntil});
+   renderPlans(lastPlans);
+   st.className='status ok';
+   st.textContent='\u062A\u0645 \u062A\u0641\u0639\u064A\u0644 '+(d.planName||'\u0627\u0644\u0628\u0627\u0642\u0629')+' \u2705 \u0644\u062D\u062F '+fmtDate(Date.parse(d.paidUntil));
+  }
+ }catch(e){
+  st.className='status err';st.textContent=e.message;
+ }finally{
+  if(btn)btn.disabled=false;
+ }
+}
+
+let supTimer=null,supSig='';
+function openSupport(){
+ document.getElementById('supportPanel').classList.add('open');
+ loadSupport(true);
+ if(supTimer)clearInterval(supTimer);
+ supTimer=setInterval(function(){loadSupport(false)},6000);
+}
+function closeSupport(){
+ document.getElementById('supportPanel').classList.remove('open');
+ if(supTimer){clearInterval(supTimer);supTimer=null}
+}
+async function loadSupport(force){
+ if(!getToken()){
+  if(force)document.getElementById('supportMsgs').innerHTML='<div class="support-hint">\u0633\u062C\u0651\u0644 \u062F\u062E\u0648\u0644\u0643 \u0645\u0646 \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u062C\u0627\u0646\u0628\u064A\u0629 \u0639\u0634\u0627\u0646 \u062A\u0643\u0644\u0645 \u0627\u0644\u062F\u0639\u0645.</div>';
+  return;
+ }
+ try{
+  const d=await api({action:'support_poll',token:getToken()});
+  if(!d.ok)return;
+  const msgs=d.messages||[];
+  const sig=msgs.map(function(m){return m.id}).join(',');
+  if(!force&&sig===supSig)return;
+  supSig=sig;
+  const box=document.getElementById('supportMsgs');
+  box.innerHTML='';
+  if(!msgs.length){box.innerHTML='<div class="support-hint">\u0627\u0628\u0639\u062A\u0644\u0646\u0627 \u0631\u0633\u0627\u0644\u062A\u0643 \u0648\u0647\u0646\u0631\u062F \u0639\u0644\u064A\u0643 \u0647\u0646\u0627.</div>';}
+  msgs.forEach(function(m){
+   const b=document.createElement('div');
+   b.className='support-row '+(m.dir==='out'?'out':'in');
+   b.textContent=m.text;
+   box.appendChild(b);
+  });
+  box.scrollTop=box.scrollHeight;
+ }catch(e){}
+}
+async function sendSupport(){
+ const t=document.getElementById('supportText');
+ const note=document.getElementById('supportNote');
+ const text=(t.value||'').trim();
+ if(!text)return;
+ if(!getToken()){closeSupport();setAuthMode('login');showAuth('\u0633\u062C\u0651\u0644 \u062F\u062E\u0648\u0644\u0643 \u0627\u0644\u0623\u0648\u0644 \u0639\u0634\u0627\u0646 \u062A\u0643\u0644\u0645 \u0627\u0644\u062F\u0639\u0645.');return}
+ t.value='';
+ try{
+  const d=await api({action:'support_send',token:getToken(),text:text});
+  if(!d.ok){if(d.code==='AUTH'){forceLogin(d.error);return}note.textContent=d.error||'';return}
+  note.textContent='\u062A\u0645 \u0625\u0631\u0633\u0627\u0644 \u0631\u0633\u0627\u0644\u062A\u0643 \u2705';
+  await loadSupport(true);
+ }catch(e){note.textContent=e.message}
+}
+
+document.getElementById('plansBtn').onclick=openPlans;
+document.getElementById('supportFab').onclick=function(){
+ const p=document.getElementById('supportPanel');
+ if(p.classList.contains('open'))closeSupport();else openSupport();
+};
+document.getElementById('supportClose').onclick=closeSupport;
+document.getElementById('supportSend').onclick=sendSupport;
+document.getElementById('supportText').addEventListener('keydown',function(e){
+ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendSupport()}
+});
+
 /* ---------- Initial state ---------- */
 if(localStorage.getItem(THEME)==='dark'){
  document.body.classList.add('dark');
@@ -2074,6 +2315,7 @@ if(localStorage.getItem(THEME)==='dark'){
 
 renderHistory();
 welcome();
+renderPro();
 renderAttachments();
 resize();
 syncSettingsUI();
