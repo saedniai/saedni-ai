@@ -177,6 +177,8 @@ button{border:0;cursor:pointer;color:inherit}
  box-shadow:var(--shadow);display:none;place-items:center;font-size:17px;color:var(--muted)
 }
 .scrolldown.show{display:grid}
+body:has(.sidebar.open) .scrolldown,body:has(.overlay.open) .scrolldown,body:has(.modal-backdrop.open) .scrolldown,body:has(.support-panel.open) .scrolldown{display:none!important}
+body.menu-open .scrolldown{display:none!important}
 
 /* Composer */
 .composer{padding:8px 16px max(12px,env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 75%,transparent);z-index:20}
@@ -335,6 +337,40 @@ body.dark .plan-card.gold .plan-price b{color:#f0cf6d}
 .req-head strong{font-size:14px}
 .req-back{background:none;border:0;color:var(--p);font:inherit;font-size:12px;cursor:pointer;padding:4px 2px}
 
+
+/* ---------- v24: \u062B\u064A\u0645 \u0630\u0647\u0628\u064A \u0647\u0627\u062F\u064A \u0644\u0645\u0634\u062A\u0631\u0643\u064A Pro + \u0645\u0642\u0627\u0631\u0646\u0629 \u0627\u0644\u0628\u0627\u0642\u0627\u062A ---------- */
+.namerow{display:flex;align-items:center;gap:5px}
+.namerow .vseal{margin-inline-start:0;width:18px;height:18px;vertical-align:middle}
+.vseal{width:18px;height:18px}
+body.pro{--p:#a9791f;--p2:#8c6416;--user:#a9791f}
+body.pro.dark{--p:#b88a2c;--p2:#926a19;--user:#9c7421}
+body.pro .app{background:radial-gradient(circle at 90% 0%,rgba(140,100,22,.08),transparent 30%),var(--bg)}
+body.pro .brandlogo{box-shadow:0 10px 25px rgba(169,121,31,.25)}
+body.pro .new{box-shadow:0 8px 22px rgba(169,121,31,.25)}
+body.pro .new:hover{box-shadow:0 12px 28px rgba(169,121,31,.32)}
+body.pro .hitem.active{background:rgba(169,121,31,.09);border-color:rgba(169,121,31,.25)}
+body.pro .hero{box-shadow:0 18px 45px rgba(169,121,31,.28)}
+body.pro .suggestion:hover{border-color:rgba(169,121,31,.4)}
+body.pro .mavatar{box-shadow:0 6px 16px rgba(169,121,31,.22)}
+body.pro .md blockquote{background:rgba(169,121,31,.06)}
+body.pro .send{box-shadow:0 6px 16px rgba(169,121,31,.25)}
+body.pro .file-icon{background:rgba(140,100,22,.12)}
+body.pro /* Auth + invites */
+.auth-screen{background:radial-gradient(circle at 85% 0%,rgba(140,100,22,.16),transparent 35%),radial-gradient(circle at 10% 100%,rgba(169,121,31,.14),transparent 35%),var(--bg)}
+body.pro .auth-tabs button.active{box-shadow:0 6px 16px rgba(169,121,31,.25)}
+.cmp{margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:12.5px}
+.cmp-row{display:grid;grid-template-columns:1.25fr 1fr 1fr;align-items:center;border-top:1px solid var(--line)}
+.cmp-row:first-child{border-top:0;background:rgba(100,116,139,.08);font-weight:800}
+.cmp-row>div{padding:9px 10px;line-height:1.6}
+.cmp-row>div:nth-child(n+2){text-align:center}
+.cmp-row .pro{color:#8a6410;font-weight:800}
+body.dark .cmp-row .pro{color:#f0cf6d}
+.cmp-row .no{color:var(--muted)}
+.cmp-title{font-weight:800;font-size:13px;margin:16px 0 0}
+.cap-plans-btn{display:block;margin-top:10px;padding:9px 16px;border-radius:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--p),var(--p2));border:0;cursor:pointer}
+.sup-upsell{padding:18px 14px;text-align:center;line-height:1.9;font-size:13px}
+.sup-upsell button{margin-top:10px;padding:9px 16px;border-radius:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--p),var(--p2))}
+
 @media(max-width:760px){
  .sidebar{position:fixed;top:0;bottom:0;right:0;width:min(88vw,330px);transform:translateX(105%);transition:transform .22s ease;box-shadow:-15px 0 40px rgba(0,0,0,.18);overflow:auto}
  .sidebar.open{transform:none}
@@ -378,7 +414,7 @@ body.dark .plan-card.gold .plan-price b{color:#f0cf6d}
       <div class="user-card" id="userCard">
         <div class="avatar" id="avatar">&#1586;</div>
         <div>
-          <strong id="userName">&#1586;&#1575;&#1574;&#1585;</strong><span id="proBadge" style="display:none"><svg class="vseal" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.4l2.35 1.95 3.02-.42 1.02 2.9 2.71 1.55-.73 3 .73 3-2.71 1.55-1.02 2.9-3.02-.42L12 22.6l-2.35-1.95-3.02.42-1.02-2.9L2.9 16.62l.73-3-.73-3 2.71-1.55 1.02-2.9 3.02.42z" fill="#e8c158" stroke="#b8860b" stroke-width="1.1"/><path d="M8.2 12.1l2.6 2.6 5-5.1" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div class="namerow"><strong id="userName">&#1586;&#1575;&#1574;&#1585;</strong><span id="proBadge" style="display:none"><svg class="vseal" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12.00,0.20 13.15,1.76 14.63,0.50 15.40,2.28 17.12,1.37 17.48,3.28 19.36,2.77 19.28,4.72 21.23,4.64 20.72,6.52 22.63,6.88 21.72,8.60 23.50,9.37 22.24,10.85 23.80,12.00 22.24,13.15 23.50,14.63 21.72,15.40 22.63,17.12 20.72,17.48 21.23,19.36 19.28,19.28 19.36,21.23 17.48,20.72 17.12,22.63 15.40,21.72 14.63,23.50 13.15,22.24 12.00,23.80 10.85,22.24 9.37,23.50 8.60,21.72 6.88,22.63 6.52,20.72 4.64,21.23 4.72,19.28 2.77,19.36 3.28,17.48 1.37,17.12 2.28,15.40 0.50,14.63 1.76,13.15 0.20,12.00 1.76,10.85 0.50,9.37 2.28,8.60 1.37,6.88 3.28,6.52 2.77,4.64 4.72,4.72 4.64,2.77 6.52,3.28 6.88,1.37 8.60,2.28 9.37,0.50 10.85,1.76" fill="#d9ae35" stroke="#a87d1c" stroke-width=".7" stroke-linejoin="miter"/><circle cx="12" cy="12" r="8.6" fill="none" stroke="#f3dc8a" stroke-width=".8" opacity=".8"/><path d="M7.3 12.5l3.1 3.1 6.3-6.5" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
           <small id="userEmail">&#1587;&#1580;&#1617;&#1604; &#1583;&#1582;&#1608;&#1604;&#1603;</small>
         </div>
         
@@ -454,6 +490,7 @@ body.dark .plan-card.gold .plan-price b{color:#f0cf6d}
     <p class="account-note" id="plansNote"></p>
     <div class="req-banner" id="reqBanner"></div>
     <div class="plans-grid" id="plansGrid"></div>
+    <div id="planCompare"></div>
 
     <div id="reqForm" style="display:none">
       <div class="req-sep"></div>
@@ -490,7 +527,7 @@ body.dark .plan-card.gold .plan-price b{color:#f0cf6d}
       <h2>&#128100; &#1581;&#1587;&#1575;&#1576;&#1610;</h2>
       <button class="close-modal" data-close="accountModal">&#10005;</button>
     </div>
-    <p class="account-note">&#1571;&#1606;&#1578; &#1583;&#1575;&#1582;&#1604; &#1576;&#1575;&#1587;&#1605;: <strong id="accountUserLabel"></strong><span id="proBadge2" style="display:none"><svg class="vseal" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.4l2.35 1.95 3.02-.42 1.02 2.9 2.71 1.55-.73 3 .73 3-2.71 1.55-1.02 2.9-3.02-.42L12 22.6l-2.35-1.95-3.02.42-1.02-2.9L2.9 16.62l.73-3-.73-3 2.71-1.55 1.02-2.9 3.02.42z" fill="#e8c158" stroke="#b8860b" stroke-width="1.1"/><path d="M8.2 12.1l2.6 2.6 5-5.1" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></p>
+    <p class="account-note">&#1571;&#1606;&#1578; &#1583;&#1575;&#1582;&#1604; &#1576;&#1575;&#1587;&#1605;: <strong id="accountUserLabel"></strong><span id="proBadge2" style="display:none"><svg class="vseal" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12.00,0.20 13.15,1.76 14.63,0.50 15.40,2.28 17.12,1.37 17.48,3.28 19.36,2.77 19.28,4.72 21.23,4.64 20.72,6.52 22.63,6.88 21.72,8.60 23.50,9.37 22.24,10.85 23.80,12.00 22.24,13.15 23.50,14.63 21.72,15.40 22.63,17.12 20.72,17.48 21.23,19.36 19.28,19.28 19.36,21.23 17.48,20.72 17.12,22.63 15.40,21.72 14.63,23.50 13.15,22.24 12.00,23.80 10.85,22.24 9.37,23.50 8.60,21.72 6.88,22.63 6.52,20.72 4.64,21.23 4.72,19.28 2.77,19.36 3.28,17.48 1.37,17.12 2.28,15.40 0.50,14.63 1.76,13.15 0.20,12.00 1.76,10.85 0.50,9.37 2.28,8.60 1.37,6.88 3.28,6.52 2.77,4.64 4.72,4.72 4.64,2.77 6.52,3.28 6.88,1.37 8.60,2.28 9.37,0.50 10.85,1.76" fill="#d9ae35" stroke="#a87d1c" stroke-width=".7" stroke-linejoin="miter"/><circle cx="12" cy="12" r="8.6" fill="none" stroke="#f3dc8a" stroke-width=".8" opacity=".8"/><path d="M7.3 12.5l3.1 3.1 6.3-6.5" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></p>
     <div class="field"><label>&#1603;&#1604;&#1605;&#1577; &#1575;&#1604;&#1587;&#1585; &#1575;&#1604;&#1581;&#1575;&#1604;&#1610;&#1577;</label><input id="oldPass" type="password" autocomplete="current-password" maxlength="100"></div>
     <div class="field"><label>&#1603;&#1604;&#1605;&#1577; &#1575;&#1604;&#1587;&#1585; &#1575;&#1604;&#1580;&#1583;&#1610;&#1583;&#1577;</label><input id="newPass" type="password" autocomplete="new-password" maxlength="100" placeholder="6 &#1581;&#1585;&#1608;&#1601; &#1593;&#1604;&#1609; &#1575;&#1604;&#1571;&#1602;&#1604;"></div>
     <div class="form-msg" id="pwMsg"></div>
@@ -1108,6 +1145,17 @@ chat.addEventListener('scroll',()=>{
  scrolldownBtn.classList.toggle('show',!nearBottom&&chat.scrollHeight>chat.clientHeight+100);
 });
 
+(function(){
+ function sync(){
+   var open=!!document.querySelector('.sidebar.open,.overlay.open,.modal-backdrop.open,.support-panel.open');
+   document.body.classList.toggle('menu-open',open);
+ }
+ try{
+   new MutationObserver(sync).observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
+ }catch(e){}
+ sync();
+})();
+
 scrolldownBtn.onclick=()=>{
  chat.scrollTo({top:chat.scrollHeight,behavior:'smooth'});
 };
@@ -1289,6 +1337,17 @@ async function sendMessage(forced){
 
    if(data.code==='AUTH'){
      forceLogin(data.error);
+     return;
+   }
+
+   if(data.code==='CAP'){
+     add(data.error||'\u0648\u0635\u0644\u062a \u0644\u0644\u062d\u062f \u0627\u0644\u064a\u0648\u0645\u064a \u0627\u0644\u0645\u062c\u0627\u0646\u064a','ai',false);
+     if(data.category!=='guest'){
+       try{
+         var _ms=document.querySelectorAll('.message.ai .content'),_c=_ms[_ms.length-1];
+         if(_c){var _b=document.createElement('button');_b.type='button';_b.className='cap-plans-btn';_b.textContent='\u0634\u0648\u0641 \u0627\u0644\u0628\u0627\u0642\u0627\u062a';_b.onclick=function(){openPlans()};_c.appendChild(_b)}
+       }catch(_e){}
+     }
      return;
    }
 
@@ -2218,7 +2277,7 @@ async function openPlans(){
  try{
   const d=await api({action:'plans'});
   if(!d.ok)throw Error(d.error||'\u062A\u0639\u0630\u0631 \u062A\u062D\u0645\u064A\u0644 \u0627\u0644\u0628\u0627\u0642\u0627\u062A.');
-  lastPlans=d.plans||[];
+  lastPlans=d.plans||[];window.planLimits=d.limits||null;if(typeof renderCompare==="function")renderCompare();
   renderPlans(lastPlans);
   note.textContent=d.note||'';
   document.getElementById('plansTitle').textContent=d.title||'\u062E\u0637\u0637 \u0627\u0644\u0627\u0634\u062A\u0631\u0627\u0643';
@@ -2296,6 +2355,8 @@ async function loadSupport(force){
  }
  try{
   const d=await api({action:'support_poll',token:getToken()});
+  if(d&&d.proOnly){showSupportUpsell();return}
+  supportUpsellOff();
   if(!d.ok)return;
   const msgs=d.messages||[];
   const sig=msgs.map(function(m){return m.id}).join(',');
@@ -2322,6 +2383,7 @@ async function sendSupport(){
  t.value='';
  try{
   const d=await api({action:'support_send',token:getToken(),text:text});
+  if(d&&d.code==='PRO_ONLY'){showSupportUpsell();return}
   if(!d.ok){if(d.code==='AUTH'){forceLogin(d.error);return}note.textContent=d.error||'';return}
   note.textContent='\u062A\u0645 \u0625\u0631\u0633\u0627\u0644 \u0631\u0633\u0627\u0644\u062A\u0643 \u2705';
   await loadSupport(true);
@@ -2356,7 +2418,7 @@ initAuth();
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}
 
 /* ---------- v23: \u0637\u0644\u0628 \u0627\u0634\u062A\u0631\u0627\u0643 + \u0634\u0627\u0631\u0629 \u0627\u0644\u062A\u0648\u062B\u064A\u0642 ---------- */
-var SEAL_SVG = '<svg class="vseal" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.4l2.35 1.95 3.02-.42 1.02 2.9 2.71 1.55-.73 3 .73 3-2.71 1.55-1.02 2.9-3.02-.42L12 22.6l-2.35-1.95-3.02.42-1.02-2.9L2.9 16.62l.73-3-.73-3 2.71-1.55 1.02-2.9 3.02.42z" fill="#e8c158" stroke="#b8860b" stroke-width="1.1"/><path d="M8.2 12.1l2.6 2.6 5-5.1" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var SEAL_SVG = '<svg class="vseal" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12.00,0.20 13.15,1.76 14.63,0.50 15.40,2.28 17.12,1.37 17.48,3.28 19.36,2.77 19.28,4.72 21.23,4.64 20.72,6.52 22.63,6.88 21.72,8.60 23.50,9.37 22.24,10.85 23.80,12.00 22.24,13.15 23.50,14.63 21.72,15.40 22.63,17.12 20.72,17.48 21.23,19.36 19.28,19.28 19.36,21.23 17.48,20.72 17.12,22.63 15.40,21.72 14.63,23.50 13.15,22.24 12.00,23.80 10.85,22.24 9.37,23.50 8.60,21.72 6.88,22.63 6.52,20.72 4.64,21.23 4.72,19.28 2.77,19.36 3.28,17.48 1.37,17.12 2.28,15.40 0.50,14.63 1.76,13.15 0.20,12.00 1.76,10.85 0.50,9.37 2.28,8.60 1.37,6.88 3.28,6.52 2.77,4.64 4.72,4.72 4.64,2.77 6.52,3.28 6.88,1.37 8.60,2.28 9.37,0.50 10.85,1.76" fill="#d9ae35" stroke="#a87d1c" stroke-width=".7" stroke-linejoin="miter"/><circle cx="12" cy="12" r="8.6" fill="none" stroke="#f3dc8a" stroke-width=".8" opacity=".8"/><path d="M7.3 12.5l3.1 3.1 6.3-6.5" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 var myReq = null;
 var reqPlanId = 'pro';
@@ -2392,7 +2454,7 @@ function reqStateText(r){
   }
   if(r.status === 'rejected') return '\u0637\u0644\u0628\u0643 \u0627\u062A\u0631\u0641\u0636 \u0627\u0644\u0645\u0631\u0629 \u062F\u064A. \u062A\u0642\u062F\u0631 \u062A\u0628\u0639\u062A \u0637\u0644\u0628 \u062C\u062F\u064A\u062F.';
   if(r.status === 'expired') return '\u0637\u0644\u0628\u0643 \u0627\u0644\u0642\u062F\u064A\u0645 \u0627\u0646\u062A\u0647\u062A \u0645\u062F\u062A\u0647 \u0645\u0646 \u063A\u064A\u0631 \u0631\u062F. \u0627\u0628\u0639\u062A \u0637\u0644\u0628 \u062C\u062F\u064A\u062F.';
-  if(r.status === 'approved') return '\u062A\u0645 \u062A\u0641\u0639\u064A\u0644 \u0628\u0627\u0642\u062A\u0643 \u2705';
+  if(r.status === 'approved') return '';
   return '';
 }
 
@@ -2522,6 +2584,65 @@ document.getElementById('reqBack').onclick = function(){ reqShowForm(false); };
 renderPro();
 loadMyRequest();
 
+
+
+/* ---------- v24: \u062B\u064A\u0645 Pro + \u0645\u0642\u0627\u0631\u0646\u0629 + \u062F\u0639\u0645 \u0644\u0645\u0634\u062A\u0631\u0643\u064A Pro ---------- */
+function renderCompare(){
+  var box = document.getElementById('planCompare');
+  if(!box) return;
+  var L = window.planLimits;
+  if(!L){ box.innerHTML = ''; return; }
+  var pn = 'Saedni Pro';
+  for(var i = 0; i < (lastPlans || []).length; i++){ if(lastPlans[i].id === 'pro'){ pn = lastPlans[i].name; break; } }
+  function row(a, b, c, cls){
+    return '<div class="cmp-row"><div>' + a + '</div><div class="no">' + b + '</div><div class="pro">' + c + '</div></div>';
+  }
+  var h = '<div class="cmp-title">\u0627\u0644\u0641\u0631\u0642 \u0628\u064A\u0646 \u0627\u0644\u0645\u062C\u0627\u0646\u064A \u0648' + pn + '</div><div class="cmp">';
+  h += '<div class="cmp-row"><div></div><div>\u0645\u062C\u0627\u0646\u064A</div><div class="pro">' + pn + '</div></div>';
+  var UL = '\u0628\u0644\u0627 \u062d\u062f\u0648\u062f';
+  h += row('\u0631\u0633\u0627\u0626\u0644 \u0641\u064a \u0627\u0644\u064a\u0648\u0645', String(L.freeDaily), UL);
+  h += row('\u0637\u0644\u0628\u0627\u062a \u0628\u0631\u0645\u062c\u0629 \u0641\u064a \u0627\u0644\u064a\u0648\u0645', String(L.freeCode), UL);
+  h += row('\u0635\u0648\u0631 \u0641\u064a \u0627\u0644\u064a\u0648\u0645', String(L.freeImages), UL);
+  h += row('\u0645\u062d\u0627\u062f\u062b\u0627\u062a \u0645\u062d\u0641\u0648\u0638\u0629', String(L.freeChats), UL);
+  h += row('\u0633\u0631\u0639\u0629 \u0627\u0644\u0631\u062f', '\u0639\u0627\u062f\u064a\u0629', '\u0627\u0644\u0623\u0633\u0631\u0639');
+  h += row('\u062f\u0639\u0645 \u0645\u0628\u0627\u0634\u0631', '\u0628\u0639\u062f \u0627\u0644\u0627\u0634\u062a\u0631\u0627\u0643', '\u0623\u0648\u0644\u0648\u064a\u0629');
+  h += row('\u0639\u0644\u0627\u0645\u0629 \u062a\u0648\u062b\u064a\u0642 \u0648\u062b\u064a\u0645 \u0630\u0647\u0628\u064a', '\u2014', '\u2713');
+  h += '</div>';
+  box.innerHTML = h;
+}
+
+function supportUpsellOff(){
+  var f = document.querySelector('.support-form');
+  if(f) f.style.display = '';
+  var sn = document.getElementById('supportNote');
+  if(sn) sn.style.display = '';
+}
+function showSupportUpsell(){
+  var box = document.getElementById('supportMsgs');
+  var f = document.querySelector('.support-form');
+  if(f) f.style.display = 'none';
+  var sn = document.getElementById('supportNote');
+  if(sn) sn.style.display = 'none';
+  if(box){
+    box.innerHTML = '<div class="sup-upsell">\u0627\u0644\u062f\u0639\u0645 \u0627\u0644\u0645\u0628\u0627\u0634\u0631 \u0644\u0645\u0634\u062a\u0631\u0643\u064a Saedni Pro.<br>\u0627\u0634\u062a\u0631\u0643 \u0627\u0644\u0623\u0648\u0644 \u0648\u0628\u0639\u062f\u0647\u0627 \u062a\u0642\u062f\u0631 \u062a\u0643\u0644\u0645\u0646\u0627 \u0647\u0646\u0627 \u0648\u0647\u0646\u0631\u062f \u0639\u0644\u064a\u0643 \u0628\u0623\u0648\u0644\u0648\u064a\u0629.<br><button type="button" id="supUpBtn">\u0634\u0648\u0641 \u0627\u0644\u0628\u0627\u0642\u0627\u062A</button></div>';
+    var b = document.getElementById('supUpBtn');
+    if(b) b.onclick = function(){ closeSupport(); openPlans(); };
+  }
+}
+
+var _renderProV24 = renderPro;
+renderPro = function(){
+  _renderProV24();
+  document.body.classList.toggle('pro', reqIsPro());
+};
+
+var _reqShowFormV24 = reqShowForm;
+reqShowForm = function(on){
+  _reqShowFormV24(on);
+  var c = document.getElementById('planCompare');
+  if(c) c.style.display = on ? 'none' : '';
+};
+renderPro();
 
 </script>
 </body>
