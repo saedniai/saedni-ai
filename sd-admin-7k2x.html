@@ -56,6 +56,7 @@ header.top{position:sticky;top:0;z-index:5;background:rgba(11,16,32,.94);backdro
 .chip.pro{color:#3b2b00;background:linear-gradient(135deg,#ffe9a8,#e8c158);border:0}
 .chip.banned{color:#fca5a5;border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.12)}
 .chip.suspended{color:#fdba74;border-color:rgba(251,146,60,.4);background:rgba(251,146,60,.12)}
+.item .meta a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
 .meta{color:var(--muted);font-size:11.5px;margin-top:6px;line-height:1.8}
 .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .empty{color:var(--muted);text-align:center;padding:22px;font-size:13px}
@@ -104,6 +105,7 @@ header.top{position:sticky;top:0;z-index:5;background:rgba(11,16,32,.94);backdro
   <div class="tabs" id="tabs">
     <button class="tab on" data-view="overview">&#x646;&#x638;&#x631;&#x629; &#x639;&#x627;&#x645;&#x629;</button>
     <button class="tab" data-view="users">&#x627;&#x644;&#x645;&#x633;&#x62A;&#x62E;&#x62F;&#x645;&#x648;&#x646;</button>
+    <button class="tab" data-view="requests">&#x637;&#x644;&#x628;&#x627;&#x62A; &#x627;&#x644;&#x627;&#x634;&#x62A;&#x631;&#x627;&#x643;</button>
     <button class="tab" data-view="plans">&#x627;&#x644;&#x628;&#x627;&#x642;&#x627;&#x62A;</button>
     <button class="tab" data-view="support">&#x627;&#x644;&#x62F;&#x639;&#x645;</button>
     <button class="tab" data-view="settings">&#x627;&#x644;&#x625;&#x639;&#x62F;&#x627;&#x62F;&#x627;&#x62A;</button>
@@ -214,6 +216,7 @@ function setView(v){
   if(pollTimer){ clearInterval(pollTimer); pollTimer = null; }
   if(v === "overview") loadOverview();
   else if(v === "users") loadUsers();
+  else if(v === "requests") loadRequests();
   else if(v === "plans") loadPlans();
   else if(v === "support") loadThreads();
   else loadSettings();
@@ -235,10 +238,12 @@ async function loadOverview(){
         '<div class="stat"><span>\u0631\u0633\u0627\u064A\u0644 \u062F\u0639\u0645 \u062C\u062F\u064A\u062F\u0629</span><b>' + s.unreadSupport + '</b></div>' +
         '<div class="stat"><span>\u0645\u062D\u0638\u0648\u0631\u0648\u0646</span><b>' + s.banned + '</b></div>' +
         '<div class="stat"><span>\u0645\u0648\u0642\u0648\u0641\u0648\u0646 \u0645\u0624\u0642\u062A\u064B\u0627</span><b>' + s.suspended + '</b></div>' +
+        '<div class="stat"><span>\u0637\u0644\u0628\u0627\u062A \u0627\u0634\u062A\u0631\u0627\u0643 \u0645\u0633\u062A\u0646\u064A\u0629</span><b class="gold">' + (d.pendingRequests || 0) + '</b></div>' +
       '</div>' +
       '<div class="item"><div class="spread"><div class="name">\u062A\u064A\u0644\u064A\u062C\u0631\u0627\u0645 ' + tg + '</div>' +
       '<button class="btn sm" onclick="setView(\'settings\')">\u0625\u0639\u062F\u0627\u062F\u0627\u062A</button></div>' +
       '<div class="meta">' + (d.telegram.connected ? ("\u0627\u0644\u0645\u062D\u0627\u062F\u062B\u0629 \u0645\u0631\u0628\u0648\u0637\u0629: " + esc(d.telegram.name || d.telegram.chatId || "")) : "\u0644\u0633\u0647 \u0645\u0634 \u0645\u0631\u0628\u0648\u0637. \u0627\u0631\u0628\u0637\u0647 \u0645\u0646 \u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0639\u0634\u0627\u0646 \u0631\u0633\u0627\u064A\u0644 \u0627\u0644\u062F\u0639\u0645 \u062A\u0648\u0635\u0644\u0643.") + '</div></div>' +
+      ((d.pendingRequests || 0) ? '<div class="item"><div class="spread"><div class="name">\u0641\u064A\u0647 ' + d.pendingRequests + ' \u0637\u0644\u0628 \u0627\u0634\u062A\u0631\u0627\u0643 \u0645\u0633\u062A\u0646\u064A \u0645\u0648\u0627\u0641\u0642\u062A\u0643</div><button class="btn sm gold" onclick="setView(\'requests\')">\u0627\u0641\u062A\u062D \u0627\u0644\u0637\u0644\u0628\u0627\u062A</button></div></div>' : '') +
       '<div class="item"><div class="name">\u0627\u0644\u0628\u0627\u0642\u0627\u062A \u0627\u0644\u0634\u063A\u0627\u0644\u0629</div><div class="meta">' +
       d.plans.filter(function(p){return p.active;}).map(function(p){ return esc(p.name) + " \u2014 " + (p.price > 0 ? (esc(p.priceText) + " " + esc(p.currency)) : "\u0645\u062C\u0627\u0646\u064B\u0627") + " / " + p.durationDays + " \u064A\u0648\u0645"; }).join("<br>") +
       '</div></div>' +
@@ -493,6 +498,7 @@ async function loadSettings(){
       '<div><label>\u0625\u0646\u0633\u062A\u0627\u0628\u0627\u064A</label><input id="payI" value="' + esc(s.payInstapay) + '" placeholder="name@instapay"></div></div>' +
       '<label>\u0639\u0646\u0648\u0627\u0646 \u0635\u0641\u062D\u0629 \u0627\u0644\u0628\u0627\u0642\u0627\u062A</label><input id="plansTitle" value="' + esc(s.plansTitle) + '">' +
       '<label>\u0645\u0644\u0627\u062D\u0638\u0629 \u062A\u0638\u0647\u0631 \u0644\u0644\u0639\u0645\u0644\u0627\u0621 \u062A\u062D\u062A \u0627\u0644\u0628\u0627\u0642\u0627\u062A (\u0633\u064A\u0628\u0647\u0627 \u0641\u0627\u0636\u064A\u0629 \u0644\u0648 \u0645\u0634 \u0639\u0627\u064A\u0632 \u062D\u0627\u062C\u0629 \u062A\u0638\u0647\u0631)</label><input id="plansNote" value="' + esc(s.plansNote) + '">' +
+      '<label>\u0645\u062F\u0629 \u0627\u0646\u062A\u0647\u0627\u0621 \u0637\u0644\u0628\u0627\u062A \u0627\u0644\u0627\u0634\u062A\u0631\u0627\u0643 \u0628\u0627\u0644\u0633\u0627\u0639\u0627\u062A (0 = \u0645\u0641\u064A\u0634 \u0627\u0646\u062A\u0647\u0627\u0621\u060C \u0627\u0644\u0637\u0644\u0628 \u064A\u0641\u0636\u0644 \u0645\u0633\u062A\u0646\u064A \u0644\u062D\u062F \u0645\u0627 \u062A\u0648\u0627\u0641\u0642 \u0623\u0648 \u062A\u0631\u0641\u0636)</label><input id="reqExp" type="number" min="0" max="720" value="' + (Number(s.requestExpiryHours) || 0) + '">' +
       '<div class="acts"><button class="btn sm gold" onclick="saveSettings()">\u062D\u0641\u0638 \u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A</button></div></div>' +
 
       '<div class="item"><div class="name">\u0643\u0644\u0645\u0629 \u0633\u0631 \u0644\u0648\u062D\u0629 \u0627\u0644\u062A\u062D\u0643\u0645</div>' +
@@ -539,7 +545,8 @@ async function saveSettings(){
       payVodafone: el("payV").value.trim(),
       payInstapay: el("payI").value.trim(),
       plansTitle: el("plansTitle").value.trim(),
-      plansNote: el("plansNote").value.trim()
+      plansNote: el("plansNote").value.trim(),
+      requestExpiryHours: Number(el("reqExp").value || 0)
     });
     if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u062D\u0641\u0638");
     alert("\u062A\u0645 \u0627\u0644\u062D\u0641\u0638 \u2705");
@@ -556,6 +563,83 @@ async function changePw(){
     setToken(d.token);
     alert("\u062A\u0645 \u062A\u063A\u064A\u064A\u0631 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u2705");
     loadSettings();
+  } catch(e) { alert(e.message); }
+}
+
+/* ---------- subscription requests ---------- */
+var reqFilter = "pending";
+
+function reqChip(st){
+  if(st === "pending") return '<span class="chip gold">\u0645\u0633\u062A\u0646\u064A</span>';
+  if(st === "approved") return '<span class="chip pro">\u0645\u0642\u0628\u0648\u0644</span>';
+  if(st === "rejected") return '<span class="chip banned">\u0645\u0631\u0641\u0648\u0636</span>';
+  return '<span class="chip">\u0645\u0646\u062A\u0647\u064A</span>';
+}
+
+function reqPhoneLink(p){
+  var digits = String(p || "").replace(/[^0-9]/g, "");
+  if(!digits) return "";
+  var intl = digits.indexOf("0") === 0 ? ("20" + digits.slice(1)) : digits;
+  return '<a href="https://wa.me/' + intl + '" target="_blank" rel="noopener">' + esc(digits) + '</a>';
+}
+
+async function loadRequests(){
+  el("view").innerHTML = '<div class="empty">\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...</div>';
+  try {
+    var d = await call("admin_requests", { limit: 300 });
+    if(!d.ok) throw new Error(d.error);
+    var all = d.requests || [];
+    var list = all.filter(function(r){ return reqFilter === "all" ? true : r.status === reqFilter; });
+    var expTxt = (Number(d.expiryHours) || 0) > 0 ? (d.expiryHours + " \u0633\u0627\u0639\u0629") : "\u0645\u0641\u064A\u0634 \u0627\u0646\u062A\u0647\u0627\u0621";
+    var html = '<div class="row" style="margin-top:12px">' +
+      '<button class="btn sm ' + (reqFilter === "pending" ? "gold" : "") + '" onclick="reqFilter=\'pending\';loadRequests()">\u0645\u0633\u062A\u0646\u064A\u0629 (' + d.pending + ')</button>' +
+      '<button class="btn sm ' + (reqFilter === "approved" ? "gold" : "") + '" onclick="reqFilter=\'approved\';loadRequests()">\u0645\u0642\u0628\u0648\u0644\u0629</button>' +
+      '<button class="btn sm ' + (reqFilter === "rejected" ? "gold" : "") + '" onclick="reqFilter=\'rejected\';loadRequests()">\u0645\u0631\u0641\u0648\u0636\u0629</button>' +
+      '<button class="btn sm ' + (reqFilter === "all" ? "gold" : "") + '" onclick="reqFilter=\'all\';loadRequests()">\u0627\u0644\u0643\u0644 (' + d.total + ')</button>' +
+      '</div>' +
+      '<p class="hint">\u0645\u062F\u0629 \u0627\u0646\u062A\u0647\u0627\u0621 \u0627\u0644\u0637\u0644\u0628\u0627\u062A: ' + esc(expTxt) + ' \u2014 \u0628\u062A\u062A\u0638\u0628\u0637 \u0645\u0646 \u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A.</p>';
+    if(!list.length){
+      html += '<div class="empty">\u0645\u0641\u064A\u0634 \u0637\u0644\u0628\u0627\u062A \u0641\u064A \u0627\u0644\u0642\u0633\u0645 \u062F\u0647.</div>';
+    } else {
+      list.forEach(function(r){
+        var who = esc(r.fullName || "") || esc(r.username || "");
+        html += '<div class="item">' +
+          '<div class="spread"><div class="name">' + esc(r.planName || r.planId || "\u0628\u0627\u0642\u0629") + ' \u2014 ' + who + ' ' + reqChip(r.status) + '</div>' +
+          '<div class="meta">' + esc(fmt(r.createdAt)) + '</div></div>' +
+          '<div class="meta">\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645: <b>' + esc(r.username || "-") + '</b> \u00B7 \u0645\u0648\u0628\u0627\u064A\u0644: ' + (reqPhoneLink(r.phone) || "-") + ' \u00B7 \u0625\u064A\u0645\u064A\u0644: ' + (r.email ? '<a href="mailto:' + esc(r.email) + '">' + esc(r.email) + '</a>' : "-") + '</div>' +
+          '<div class="meta">\u0627\u0644\u0645\u062F\u0629 \u0627\u0644\u0645\u0637\u0644\u0648\u0628\u0629: ' + (Number(r.durationDays) || 0) + ' \u064A\u0648\u0645 \u00B7 \u0627\u0644\u0633\u0639\u0631: ' + (Number(r.price) > 0 ? (esc(String(r.price)) + " " + esc(r.currency || "")) : "\u0645\u062C\u0627\u0646\u064B\u0627") + '</div>';
+        if(r.status === "pending"){
+          html += '<div class="grid2"><div><label>\u0639\u062F\u062F \u0627\u0644\u0623\u064A\u0627\u0645 \u0639\u0646\u062F \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629</label><input id="days_' + esc(r.id) + '" type="number" min="1" max="3650" value="' + (Number(r.durationDays) || 30) + '"></div>' +
+            '<div><label>\u0645\u0644\u0627\u062D\u0638\u0629 (\u0627\u062E\u062A\u064A\u0627\u0631\u064A)</label><input id="note_' + esc(r.id) + '" placeholder="\u062A\u0638\u0647\u0631 \u0641\u064A \u0633\u062C\u0644 \u0627\u0644\u0637\u0644\u0628"></div></div>' +
+            '<div class="acts"><button class="btn sm gold" onclick="decideRequest(\'' + esc(r.id) + '\',\'approve\')">\u0645\u0648\u0627\u0641\u0642\u0629 \u0648\u062A\u0641\u0639\u064A\u0644</button>' +
+            '<button class="btn sm danger" onclick="decideRequest(\'' + esc(r.id) + '\',\'reject\')">\u0631\u0641\u0636</button></div>';
+        } else {
+          html += '<div class="meta">\u0627\u062A\u062D\u0633\u0645: ' + esc(fmt(r.decidedAt)) + (r.paidUntil ? ' \u00B7 \u0627\u0644\u0628\u0627\u0642\u0629 \u0634\u063A\u0627\u0644\u0629 \u0644\u062D\u062F ' + esc(day(r.paidUntil)) : '') + (r.adminNote ? ' \u00B7 \u0645\u0644\u0627\u062D\u0638\u0629: ' + esc(r.adminNote) : '') + '</div>';
+        }
+        html += '</div>';
+      });
+    }
+    el("view").innerHTML = html;
+  } catch(e) {
+    el("view").innerHTML = '<div class="empty">' + esc(e.message) + '</div>';
+  }
+}
+
+async function decideRequest(id, decision){
+  var days = 0, note = "";
+  if(decision === "approve"){
+    var inp = el("days_" + id);
+    days = Number(inp ? inp.value : 0) || 0;
+    if(days < 1){ alert("\u0627\u0643\u062A\u0628 \u0639\u062F\u062F \u0623\u064A\u0627\u0645 \u0635\u062D\u064A\u062D."); return; }
+    if(!confirm("\u062A\u0641\u0639\u064A\u0644 \u0627\u0644\u0628\u0627\u0642\u0629 \u0644\u0645\u062F\u0629 " + days + " \u064A\u0648\u0645\u061F")) return;
+  } else if(!confirm("\u0631\u0641\u0636 \u0627\u0644\u0637\u0644\u0628\u061F")) return;
+  var nEl = el("note_" + id);
+  note = nEl ? nEl.value.trim() : "";
+  try {
+    var d = await call("admin_request_decide", { requestId: id, decision: decision, days: days, note: note });
+    if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u062D\u0641\u0638");
+    alert(decision === "approve" ? ("\u062A\u0645 \u0627\u0644\u062A\u0641\u0639\u064A\u0644 \u2705 \u0644\u062D\u062F " + fmt(d.paidUntil)) : "\u062A\u0645 \u0631\u0641\u0636 \u0627\u0644\u0637\u0644\u0628");
+    loadRequests();
   } catch(e) { alert(e.message); }
 }
 
