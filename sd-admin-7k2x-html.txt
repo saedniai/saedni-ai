@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0b1020">
+<title>&#x644;&#x648;&#x62D;&#x629; &#x627;&#x644;&#x62A;&#x62D;&#x643;&#x645;</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b1020;--card:#121b2e;--card2:#0f1728;--line:#233047;--text:#f1f5f9;--muted:#94a3b8;--gold:#e8c158;--gold2:#f7d774;--ok:#22c55e;--danger:#ef4444;--blue:#4f7cff}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:'Tajawal',system-ui,Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:var(--gold)}
+.wrap{max-width:900px;margin:0 auto;padding:14px 14px 60px}
+.login{min-height:100dvh;display:grid;place-items:center;padding:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.login .card{width:min(420px,100%)}
+h1{font-size:20px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:13px;line-height:1.8;margin:0 0 14px}
+label{display:block;font-size:12px;color:var(--muted);margin:12px 0 6px;font-weight:700}
+input,textarea,select{width:100%;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;font-size:14px;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--gold)}
+textarea{resize:vertical;min-height:70px;line-height:1.7}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 14px;border-radius:12px;background:var(--card2);border:1px solid var(--line);font-weight:700;font-size:13.5px}
+.btn.gold{background:linear-gradient(135deg,#ffe9a8,#e8c158);color:#3b2b00;border:0}
+.btn.blue{background:var(--blue);color:#fff;border:0}
+.btn.danger{background:rgba(239,68,68,.14);color:#fca5a5;border:1px solid rgba(239,68,68,.35)}
+.btn.ok{background:rgba(34,197,94,.14);color:#86efac;border:1px solid rgba(34,197,94,.35)}
+.btn:disabled{opacity:.55}
+.btn.sm{padding:7px 10px;font-size:12px;border-radius:10px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.spread{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.msg{font-size:12.5px;line-height:1.7;margin-top:10px;min-height:16px}
+.msg.err{color:#fca5a5}
+.msg.ok{color:#86efac}
+header.top{position:sticky;top:0;z-index:5;background:rgba(11,16,32,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800}
+.logo{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,#ffe9a8,#c9a227);color:#3b2b00;font-weight:900}
+.tabs{display:flex;gap:6px;overflow:auto;padding:10px 14px 0;position:sticky;top:55px;background:var(--bg);z-index:4}
+.tab{padding:9px 12px;border-radius:11px;font-size:13px;font-weight:700;color:var(--muted);white-space:nowrap;border:1px solid transparent}
+.tab.on{background:var(--card);color:var(--text);border-color:var(--line)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:12px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px}
+.stat b{display:block;font-size:24px;margin-top:4px}
+.stat span{color:var(--muted);font-size:12px}
+.list{display:grid;gap:10px;margin-top:12px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px}
+.item .name{font-weight:800;font-size:15px;display:flex;align-items:center;gap:7px}
+.chip{font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;border:1px solid}
+.chip.free{color:var(--muted);border-color:var(--line)}
+.chip.pro{color:#3b2b00;background:linear-gradient(135deg,#ffe9a8,#e8c158);border:0}
+.chip.banned{color:#fca5a5;border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.12)}
+.chip.suspended{color:#fdba74;border-color:rgba(251,146,60,.4);background:rgba(251,146,60,.12)}
+.item .meta a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
+.meta{color:var(--muted);font-size:11.5px;margin-top:6px;line-height:1.8}
+.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.empty{color:var(--muted);text-align:center;padding:22px;font-size:13px}
+.thread{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;cursor:pointer}
+.thread .last{color:var(--muted);font-size:12px;margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:52vw}
+.badge{background:var(--danger);color:#fff;border-radius:999px;font-size:10.5px;padding:2px 7px;font-weight:800}
+.msgs{display:flex;flex-direction:column;gap:8px;max-height:52dvh;overflow:auto;padding:4px;background:var(--card2);border:1px solid var(--line);border-radius:14px;margin:10px 0}
+.m{max-width:86%;padding:9px 12px;border-radius:13px;font-size:13.5px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.m.in{align-self:flex-start;background:var(--card);border:1px solid var(--line)}
+.m.out{align-self:flex-end;background:linear-gradient(135deg,#3b6ae8,#7c3aed);color:#fff}
+.m .t{display:block;font-size:10px;opacity:.7;margin-top:4px}
+.hr{height:1px;background:var(--line);margin:14px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.grid2{grid-template-columns:1fr}}
+.hint{font-size:11.5px;color:var(--muted);line-height:1.8;margin-top:6px}
+.gold{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<div id="login" class="login">
+  <div class="card">
+    <div class="brand" style="margin-bottom:10px"><div class="logo">S</div><div>&#x644;&#x648;&#x62D;&#x629; &#x62A;&#x62D;&#x643;&#x645; &#x633;&#x627;&#x639;&#x62F;&#x646;&#x64A; AI</div></div>
+    <p class="sub" id="loginSub">&#x627;&#x62F;&#x62E;&#x644; &#x643;&#x644;&#x645;&#x629; &#x633;&#x631; &#x627;&#x644;&#x625;&#x62F;&#x627;&#x631;&#x629;. &#x627;&#x644;&#x635;&#x641;&#x62D;&#x629; &#x62F;&#x64A; &#x645;&#x62E;&#x641;&#x64A;&#x629; &#x648;&#x645;&#x62D;&#x62F;&#x634; &#x64A;&#x639;&#x631;&#x641;&#x647;&#x627; &#x63A;&#x64A;&#x631;&#x643;.</p>
+    <div id="setupFields" style="display:none">
+      <label>&#x643;&#x644;&#x645;&#x629; &#x633;&#x631; &#x62C;&#x62F;&#x64A;&#x62F;&#x629; (8 &#x62D;&#x631;&#x648;&#x641; &#x639;&#x644;&#x649; &#x627;&#x644;&#x623;&#x642;&#x644;)</label>
+      <input id="pw1" type="password" autocomplete="new-password">
+      <label>&#x62A;&#x623;&#x643;&#x64A;&#x62F; &#x643;&#x644;&#x645;&#x629; &#x627;&#x644;&#x633;&#x631;</label>
+      <input id="pw2" type="password" autocomplete="new-password">
+    </div>
+    <div id="loginFields">
+      <label>&#x643;&#x644;&#x645;&#x629; &#x627;&#x644;&#x633;&#x631;</label>
+      <input id="pw" type="password" autocomplete="current-password">
+    </div>
+    <div class="msg err" id="loginMsg"></div>
+    <button class="btn gold" id="loginBtn" style="width:100%;margin-top:8px">&#x62F;&#x62E;&#x648;&#x644;</button>
+    <div class="hint" id="loginHint"></div>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+  <header class="top">
+    <div class="brand"><div class="logo">S</div><div>&#x644;&#x648;&#x62D;&#x629; &#x627;&#x644;&#x62A;&#x62D;&#x643;&#x645;<div style="font-size:11px;color:var(--muted);font-weight:400">Saedni AI</div></div></div>
+    <div class="row"><button class="btn sm" id="refreshBtn">&#x62A;&#x62D;&#x62F;&#x64A;&#x62B;</button><button class="btn sm danger" id="logoutBtn">&#x62E;&#x631;&#x648;&#x62C;</button></div>
+  </header>
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-view="overview">&#x646;&#x638;&#x631;&#x629; &#x639;&#x627;&#x645;&#x629;</button>
+    <button class="tab" data-view="users">&#x627;&#x644;&#x645;&#x633;&#x62A;&#x62E;&#x62F;&#x645;&#x648;&#x646;</button>
+    <button class="tab" data-view="requests">&#x637;&#x644;&#x628;&#x627;&#x62A; &#x627;&#x644;&#x627;&#x634;&#x62A;&#x631;&#x627;&#x643;</button>
+    <button class="tab" data-view="plans">&#x627;&#x644;&#x628;&#x627;&#x642;&#x627;&#x62A;</button>
+    <button class="tab" data-view="support">&#x627;&#x644;&#x62F;&#x639;&#x645;</button>
+    <button class="tab" data-view="settings">&#x627;&#x644;&#x625;&#x639;&#x62F;&#x627;&#x62F;&#x627;&#x62A;</button>
+  </div>
+  <div class="wrap" id="view"></div>
+</div>
+
+<script>
+var API = "https://script.google.com/macros/s/AKfycbwP7gvyU8ydx4itkG_d4WpJMTOXZmU5_dAeTh65KNBWEJH6kZqOClPhs3JTgV7qaTsl/exec";
+var TOKEN_KEY = "saedni_admin_token";
+var view = "overview";
+var state = { users: [], threads: [], threadId: "", plans: [], settings: null };
+var pollTimer = null;
+
+function el(id){ return document.getElementById(id); }
+function esc(s){ return String(s === undefined || s === null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function getToken(){ try { return localStorage.getItem(TOKEN_KEY) || ""; } catch(e){ return ""; } }
+function setToken(t){ try { if(t) localStorage.setItem(TOKEN_KEY,t); else localStorage.removeItem(TOKEN_KEY); } catch(e){} }
+
+function fmt(iso){
+  var ms = Date.parse(String(iso||""));
+  if(!ms) return "-";
+  try { return new Date(ms).toLocaleString("ar-EG",{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"}); } catch(e){ return String(iso); }
+}
+function day(iso){ var ms = Date.parse(String(iso||"")); if(!ms) return "-"; try { return new Date(ms).toLocaleDateString("ar-EG",{day:"numeric",month:"short",year:"numeric"}); } catch(e){ return "-"; } }
+
+async function api(payload){
+  var r = await fetch(API, { method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body: JSON.stringify(payload) });
+  var raw = await r.text();
+  try { return JSON.parse(raw); } catch(e){ throw new Error("\u0631\u062F \u063A\u064A\u0631 \u0635\u0627\u0644\u062D \u0645\u0646 \u0627\u0644\u062E\u0627\u062F\u0645"); }
+}
+
+async function call(action, extra){
+  var p = Object.assign({action:action, adminToken:getToken()}, extra||{});
+  var d = await api(p);
+  if(d && d.code === "ADMIN_AUTH"){ logout(); throw new Error(d.error || "\u0633\u062C\u0644 \u062F\u062E\u0648\u0644\u0643 \u062A\u0627\u0646\u064A"); }
+  return d;
+}
+
+/* ---------- login ---------- */
+async function boot(){
+  try {
+    var st = await api({action:"admin_status"});
+    if(!st.ok) throw new Error("\u062A\u0639\u0630\u0631 \u0627\u0644\u0627\u062A\u0635\u0627\u0644 \u0628\u0627\u0644\u062E\u0627\u062F\u0645");
+    if(!st.configured){
+      el("setupFields").style.display = "";
+      el("loginFields").style.display = "none";
+      el("loginSub").textContent = "\u0623\u0648\u0644 \u0645\u0631\u0629: \u0627\u062E\u062A\u0627\u0631 \u0643\u0644\u0645\u0629 \u0633\u0631 \u0644\u0644\u0625\u062F\u0627\u0631\u0629. \u0647\u062A\u062D\u062A\u0627\u062C\u0647\u0627 \u0643\u0644 \u0645\u0631\u0629 \u062A\u062F\u062E\u0644 \u0645\u0646 \u0647\u0646\u0627.";
+      el("loginBtn").textContent = "\u0625\u0646\u0634\u0627\u0621 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631";
+      el("loginHint").textContent = "\u0645\u0634 \u0647\u062A\u062A\u0628\u0639\u062A \u0641\u064A \u0623\u064A \u0631\u0633\u0627\u0644\u0629\u060C \u0648\u0628\u062A\u062A\u062E\u0632\u0646 \u0645\u0634\u0641\u0631\u0629 \u0641\u064A \u0627\u0644\u0634\u064A\u062A.";
+    } else if(getToken()){
+      openApp();
+      return;
+    }
+  } catch(e) {
+    el("loginMsg").textContent = e.message;
+  }
+  el("login").style.display = "";
+  el("app").style.display = "none";
+}
+
+async function doLogin(){
+  var btn = el("loginBtn"); btn.disabled = true;
+  el("loginMsg").textContent = "";
+  try {
+    var st = await api({action:"admin_status"});
+    var d;
+    if(!st.configured){
+      var a = el("pw1").value, b = el("pw2").value;
+      if(a.length < 8) throw new Error("\u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u0644\u0627\u0632\u0645 8 \u062D\u0631\u0648\u0641 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644.");
+      if(a !== b) throw new Error("\u0643\u0644\u0645\u062A\u064A\u0646 \u0627\u0644\u0633\u0631 \u0645\u0634 \u0645\u062A\u0637\u0627\u0628\u0642\u064A\u0646.");
+      d = await api({action:"admin_setup", password:a});
+    } else {
+      var pw = el("pw").value;
+      if(!pw) throw new Error("\u0627\u0643\u062A\u0628 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631.");
+      d = await api({action:"admin_login", password:pw});
+    }
+    if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u062F\u062E\u0648\u0644.");
+    setToken(d.token);
+    el("pw").value = ""; el("pw1").value = ""; el("pw2").value = "";
+    openApp();
+  } catch(e) {
+    el("loginMsg").textContent = e.message;
+  } finally { btn.disabled = false; }
+}
+
+function logout(){
+  setToken("");
+  if(pollTimer){ clearInterval(pollTimer); pollTimer = null; }
+  el("app").style.display = "none";
+  el("login").style.display = "";
+  el("loginSub").textContent = "\u0627\u062F\u062E\u0644 \u0643\u0644\u0645\u0629 \u0633\u0631 \u0627\u0644\u0625\u062F\u0627\u0631\u0629.";
+  el("setupFields").style.display = "none";
+  el("loginFields").style.display = "";
+  el("loginBtn").textContent = "\u062F\u062E\u0648\u0644";
+}
+
+function openApp(){
+  el("login").style.display = "none";
+  el("app").style.display = "";
+  setView("overview");
+}
+
+/* ---------- router ---------- */
+function setView(v){
+  view = v;
+  document.querySelectorAll(".tab").forEach(function(t){ t.classList.toggle("on", t.getAttribute("data-view") === v); });
+  if(pollTimer){ clearInterval(pollTimer); pollTimer = null; }
+  if(v === "overview") loadOverview();
+  else if(v === "users") loadUsers();
+  else if(v === "requests") loadRequests();
+  else if(v === "plans") loadPlans();
+  else if(v === "support") loadThreads();
+  else loadSettings();
+}
+
+/* ---------- overview ---------- */
+async function loadOverview(){
+  el("view").innerHTML = '<div class="empty">\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...</div>';
+  try {
+    var d = await call("admin_overview");
+    if(!d.ok) throw new Error(d.error);
+    var s = d.stats;
+    var tg = d.telegram.connected ? '<span class="chip pro">\u0645\u062A\u0635\u0644</span>' : '<span class="chip banned">\u0645\u0634 \u0645\u062A\u0635\u0644</span>';
+    el("view").innerHTML =
+      '<div class="stats">' +
+        '<div class="stat"><span>\u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645\u0648\u0646</span><b>' + s.users + '</b></div>' +
+        '<div class="stat"><span>\u0645\u0634\u062A\u0631\u0643\u0648 Pro</span><b class="gold">' + s.pro + '</b></div>' +
+        '<div class="stat"><span>\u062F\u062E\u0644\u0648\u0627 \u0627\u0644\u0646\u0647\u0627\u0631\u062F\u0629</span><b>' + s.activeToday + '</b></div>' +
+        '<div class="stat"><span>\u0631\u0633\u0627\u064A\u0644 \u062F\u0639\u0645 \u062C\u062F\u064A\u062F\u0629</span><b>' + s.unreadSupport + '</b></div>' +
+        '<div class="stat"><span>\u0645\u062D\u0638\u0648\u0631\u0648\u0646</span><b>' + s.banned + '</b></div>' +
+        '<div class="stat"><span>\u0645\u0648\u0642\u0648\u0641\u0648\u0646 \u0645\u0624\u0642\u062A\u064B\u0627</span><b>' + s.suspended + '</b></div>' +
+        '<div class="stat"><span>\u0637\u0644\u0628\u0627\u062A \u0627\u0634\u062A\u0631\u0627\u0643 \u0645\u0633\u062A\u0646\u064A\u0629</span><b class="gold">' + (d.pendingRequests || 0) + '</b></div>' +
+      '</div>' +
+      '<div class="item"><div class="spread"><div class="name">\u062A\u064A\u0644\u064A\u062C\u0631\u0627\u0645 ' + tg + '</div>' +
+      '<button class="btn sm" onclick="setView(\'settings\')">\u0625\u0639\u062F\u0627\u062F\u0627\u062A</button></div>' +
+      '<div class="meta">' + (d.telegram.connected ? ("\u0627\u0644\u0645\u062D\u0627\u062F\u062B\u0629 \u0645\u0631\u0628\u0648\u0637\u0629: " + esc(d.telegram.name || d.telegram.chatId || "")) : "\u0644\u0633\u0647 \u0645\u0634 \u0645\u0631\u0628\u0648\u0637. \u0627\u0631\u0628\u0637\u0647 \u0645\u0646 \u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A \u0639\u0634\u0627\u0646 \u0631\u0633\u0627\u064A\u0644 \u0627\u0644\u062F\u0639\u0645 \u062A\u0648\u0635\u0644\u0643.") + '</div></div>' +
+      ((d.pendingRequests || 0) ? '<div class="item"><div class="spread"><div class="name">\u0641\u064A\u0647 ' + d.pendingRequests + ' \u0637\u0644\u0628 \u0627\u0634\u062A\u0631\u0627\u0643 \u0645\u0633\u062A\u0646\u064A \u0645\u0648\u0627\u0641\u0642\u062A\u0643</div><button class="btn sm gold" onclick="setView(\'requests\')">\u0627\u0641\u062A\u062D \u0627\u0644\u0637\u0644\u0628\u0627\u062A</button></div></div>' : '') +
+      '<div class="item"><div class="name">\u0627\u0644\u0628\u0627\u0642\u0627\u062A \u0627\u0644\u0634\u063A\u0627\u0644\u0629</div><div class="meta">' +
+      d.plans.filter(function(p){return p.active;}).map(function(p){ return esc(p.name) + " \u2014 " + (p.price > 0 ? (esc(p.priceText) + " " + esc(p.currency)) : "\u0645\u062C\u0627\u0646\u064B\u0627") + " / " + p.durationDays + " \u064A\u0648\u0645"; }).join("<br>") +
+      '</div></div>' +
+      '<p class="hint">\u0627\u0644\u0648\u0642\u062A \u0639\u0644\u0649 \u0627\u0644\u062E\u0627\u062F\u0645: ' + esc(fmt(d.serverTime)) + '</p>';
+  } catch(e) {
+    el("view").innerHTML = '<div class="empty">' + esc(e.message) + '</div>';
+  }
+}
+
+/* ---------- users ---------- */
+async function loadUsers(q){
+  el("view").innerHTML = '<div class="empty">\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...</div>';
+  try {
+    var d = await call("admin_users", { q: q || "", limit: 300 });
+    if(!d.ok) throw new Error(d.error);
+    state.users = d.users || [];
+    var html = '<div class="row" style="margin-top:12px"><input id="uq" placeholder="\u0627\u0628\u062D\u062B \u0628\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645" value="' + esc(q || "") + '" style="flex:1;min-width:180px">' +
+      '<button class="btn sm" onclick="loadUsers(el(\'uq\').value)">\u0628\u062D\u062B</button></div>' +
+      '<p class="hint">' + d.total + ' \u0645\u0633\u062A\u062E\u062F\u0645 \u0625\u062C\u0645\u0627\u0644\u064A\u060C \u0638\u0627\u0647\u0631 ' + state.users.length + '</p>';
+    if(!state.users.length){
+      html += '<div class="empty">\u0645\u0641\u064A\u0634 \u0645\u0633\u062A\u062E\u062F\u0645\u064A\u0646.</div>';
+    } else {
+      html += '<div class="list">' + state.users.map(userCard).join("") + '</div>';
+    }
+    el("view").innerHTML = html;
+  } catch(e) {
+    el("view").innerHTML = '<div class="empty">' + esc(e.message) + '</div>';
+  }
+}
+
+function userCard(u){
+  var chip = u.banned ? '<span class="chip banned">\u0645\u062D\u0638\u0648\u0631</span>' : (u.suspended ? '<span class="chip suspended">\u0645\u0648\u0642\u0648\u0641 \u0645\u0624\u0642\u062A\u064B\u0627</span>' : (u.pro ? '<span class="chip pro">PRO</span>' : '<span class="chip free">\u0645\u062C\u0627\u0646\u064A</span>'));
+  var planLine = u.pro ? ('\u0627\u0644\u0628\u0627\u0642\u0629: ' + esc(u.plan) + ' \u2014 \u0644\u062D\u062F ' + esc(day(u.paidUntil))) : (u.plan ? ('\u0627\u0644\u0628\u0627\u0642\u0629 \u0645\u0646\u062A\u0647\u064A\u0629: ' + esc(u.plan) + ' (' + esc(day(u.paidUntil)) + ')') : '\u0645\u0646 \u063A\u064A\u0631 \u0628\u0627\u0642\u0629');
+  var susLine = u.disabledUntil ? ('<br>\u0625\u064A\u0642\u0627\u0641 \u0644\u062D\u062F: ' + esc(day(u.disabledUntil))) : '';
+  return '<div class="item">' +
+    '<div class="spread"><div class="name">' + esc(u.username) + ' ' + chip + '</div><div class="meta">' + esc(u.id) + '</div></div>' +
+    '<div class="meta">' + planLine + susLine + '<br>\u0622\u062E\u0631 \u062F\u062E\u0648\u0644: ' + esc(fmt(u.lastLogin)) + '<br>\u0627\u062A\u0639\u0645\u0644: ' + esc(day(u.createdAt)) + (u.tempPassword ? '<br><span class="gold">\u0639\u0646\u062F\u0647 \u0628\u0627\u0633\u0648\u0631\u062F \u0645\u0624\u0642\u062A \u0645\u062A\u0633\u062C\u0644</span>' : '') + '</div>' +
+    '<div class="acts">' +
+      (u.banned
+        ? '<button class="btn sm ok" onclick="userOp(\'' + esc(u.id) + '\',\'unban\')">\u0641\u0643 \u0627\u0644\u062D\u0638\u0631</button>'
+        : '<button class="btn sm danger" onclick="userOp(\'' + esc(u.id) + '\',\'ban\')">\u062D\u0638\u0631</button>') +
+      (u.suspended
+        ? '<button class="btn sm ok" onclick="userOp(\'' + esc(u.id) + '\',\'unsuspend\')">\u0625\u0644\u063A\u0627\u0621 \u0627\u0644\u0625\u064A\u0642\u0627\u0641</button>'
+        : '<button class="btn sm" onclick="userOp(\'' + esc(u.id) + '\',\'suspend\')">\u0625\u064A\u0642\u0627\u0641 \u0645\u0624\u0642\u062A</button>') +
+      '<button class="btn sm" onclick="userOp(\'' + esc(u.id) + '\',\'reset\')">\u0628\u0627\u0633\u0648\u0631\u062F \u0645\u0624\u0642\u062A</button>' +
+      '<button class="btn sm gold" onclick="userOp(\'' + esc(u.id) + '\',\'set_plan\')">\u062A\u0641\u0639\u064A\u0644 Pro</button>' +
+      (u.plan ? '<button class="btn sm" onclick="userOp(\'' + esc(u.id) + '\',\'extend\')">\u062A\u0645\u062F\u064A\u062F</button>' : '') +
+      (u.plan ? '<button class="btn sm danger" onclick="userOp(\'' + esc(u.id) + '\',\'clear_plan\')">\u0625\u0644\u063A\u0627\u0621 \u0627\u0644\u0628\u0627\u0642\u0629</button>' : '') +
+    '</div></div>';
+}
+
+async function userOp(id, op){
+  var extra = { userId: id, op: op };
+  if(op === "suspend"){
+    var days = prompt("\u0627\u0644\u0625\u064A\u0642\u0627\u0641 \u0643\u0627\u0645 \u064A\u0648\u0645\u061F", "3");
+    if(days === null) return;
+    extra.days = Number(days) || 3;
+  }
+  if(op === "reset"){
+    var pw = prompt("\u0627\u0643\u062A\u0628 \u0627\u0644\u0628\u0627\u0633\u0648\u0631\u062F \u0627\u0644\u0645\u0624\u0642\u062A (6 \u062D\u0631\u0648\u0641 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644). \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645 \u0628\u064A\u062F\u062E\u0644 \u0628\u064A\u0647 \u0648\u0628\u0639\u062F\u064A\u0646 \u064A\u063A\u064A\u0651\u0631\u0647.", "saedni" + Math.floor(Math.random() * 9000 + 1000));
+    if(pw === null) return;
+    extra.password = pw;
+  }
+  if(op === "set_plan"){
+    var planId = prompt("\u0643\u0648\u062F \u0627\u0644\u0628\u0627\u0642\u0629 (pro \u0645\u062B\u0644\u0627\u064B)", "pro");
+    if(planId === null) return;
+    var d2 = prompt("\u0643\u0627\u0645 \u064A\u0648\u0645\u061F", "365");
+    if(d2 === null) return;
+    extra.planId = planId || "pro";
+    extra.days = Number(d2) || 365;
+  }
+  if(op === "extend"){
+    var d3 = prompt("\u062A\u0645\u062F\u06CC\u062F \u0643\u0627\u0645 \u064A\u0648\u0645\u061F", "365");
+    if(d3 === null) return;
+    extra.days = Number(d3) || 365;
+  }
+  if(op === "ban" && !confirm("\u062A\u0623\u0643\u064A\u062F \u062D\u0638\u0631 \u0627\u0644\u062D\u0633\u0627\u0628\u061F")) return;
+  try {
+    var d = await call("admin_user_action", extra);
+    if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u062A\u0646\u0641\u064A\u0630");
+    loadUsers(el("uq") ? el("uq").value : "");
+  } catch(e) {
+    alert(e.message);
+  }
+}
+
+/* ---------- plans ---------- */
+async function loadPlans(){
+  el("view").innerHTML = '<div class="empty">\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...</div>';
+  try {
+    var d = await call("admin_plans");
+    if(!d.ok) throw new Error(d.error);
+    state.plans = d.plans || [];
+    var html = '<div class="row" style="margin-top:12px"><button class="btn sm gold" onclick="addPlan()">+ \u0628\u0627\u0642\u0629 \u062C\u062F\u064A\u062F\u0629</button></div>';
+    html += '<div class="list">' + state.plans.map(planCard).join("") + '</div>';
+    html += '<p class="hint">\u0627\u0644\u0623\u0633\u0639\u0627\u0631 \u0648\u0627\u0644\u0623\u0633\u0645\u0627\u0621 \u0628\u062A\u0638\u0647\u0631 \u0641\u064A \u0627\u0644\u0645\u0648\u0642\u0639 \u0639\u0644\u0649 \u0637\u0648\u0644 \u0628\u0639\u062F \u0627\u0644\u062D\u0641\u0638. \u0633\u064A\u0628 \u0627\u0644\u0633\u0639\u0631 0 \u0644\u0648 \u0639\u0627\u064A\u0632 \u0627\u0644\u0628\u0627\u0642\u0629 \u0645\u062C\u0627\u0646\u064A\u0629.</p>';
+    el("view").innerHTML = html;
+  } catch(e) {
+    el("view").innerHTML = '<div class="empty">' + esc(e.message) + '</div>';
+  }
+}
+
+function planCard(p, i){
+  var idx = state.plans.indexOf(p);
+  return '<div class="item">' +
+    '<div class="spread"><div class="name">' + esc(p.name || "\u0628\u0627\u0642\u0629 \u062C\u062F\u064A\u062F\u0629") + ' <span class="chip ' + (p.active ? 'pro' : 'free') + '">' + (p.active ? "\u0638\u0627\u0647\u0631\u0629" : "\u0645\u062E\u0641\u064A\u0629") + '</span></div><div class="meta">' + esc(p.id) + '</div></div>' +
+    '<div class="grid2">' +
+      '<div><label>\u0627\u0644\u0627\u0633\u0645</label><input data-f="name" data-i="' + idx + '" value="' + esc(p.name) + '"></div>' +
+      '<div><label>\u0627\u0644\u0648\u0635\u0641 \u0627\u0644\u0642\u0635\u064A\u0631</label><input data-f="tagline" data-i="' + idx + '" value="' + esc(p.tagline) + '"></div>' +
+      '<div><label>\u0627\u0644\u0633\u0639\u0631 (0 = \u0645\u062C\u0627\u0646\u064A)</label><input data-f="price" data-i="' + idx + '" value="' + esc(p.priceText) + '"></div>' +
+      '<div><label>\u0627\u0644\u0639\u0645\u0644\u0629</label><input data-f="currency" data-i="' + idx + '" value="' + esc(p.currency) + '"></div>' +
+      '<div><label>\u0627\u0644\u0645\u062F\u0629 (\u0623\u064A\u0627\u0645)</label><input data-f="durationDays" data-i="' + idx + '" value="' + esc(p.durationDays) + '"></div>' +
+      '<div><label>\u0634\u0631\u064A\u0637 \u0627\u0644\u0630\u0647\u0628\u064A (\u0646\u0635 \u0635\u063A\u064A\u0631)</label><input data-f="badgeText" data-i="' + idx + '" value="' + esc(p.badgeText) + '"></div>' +
+      '<div><label>\u0627\u0644\u062A\u0631\u062A\u064A\u0628</label><input data-f="order" data-i="' + idx + '" value="' + esc(p.order) + '"></div>' +
+      '<div><label>\u0627\u0644\u062D\u0627\u0644\u0629</label><select data-f="active" data-i="' + idx + '"><option value="true"' + (p.active ? " selected" : "") + '>\u0638\u0627\u0647\u0631\u0629 \u0641\u064A \u0627\u0644\u0645\u0648\u0642\u0639</option><option value="false"' + (p.active ? "" : " selected") + '>\u0645\u062E\u0641\u064A\u0629</option></select></div>' +
+    '</div>' +
+    '<label>\u0627\u0644\u0645\u0645\u064A\u0632\u0627\u062A (\u0643\u0644 \u0645\u064A\u0632\u0629 \u0641\u064A \u0633\u0637\u0631)</label><textarea data-f="features" data-i="' + idx + '">' + esc((p.features || []).join("\n")) + '</textarea>' +
+    '<div class="acts"><button class="btn sm gold" onclick="savePlan(' + idx + ')">\u062D\u0641\u0638</button>' +
+    '<button class="btn sm danger" onclick="delPlan(\'' + esc(p.id) + '\')">\u062D\u0630\u0641</button></div>' +
+  '</div>';
+}
+
+function addPlan(){
+  state.plans.push({ id:"", name:"\u0628\u0627\u0642\u0629 \u062C\u062F\u064A\u062F\u0629", tagline:"", price:0, priceText:"0", currency:"\u062C.\u0645", durationDays:365, features:[], active:true, order:state.plans.length + 1, badgeText:"", color:"gold" });
+  var html = '<div class="row" style="margin-top:12px"><button class="btn sm gold" onclick="addPlan()">+ \u0628\u0627\u0642\u0629 \u062C\u062F\u064A\u062F\u0629</button></div><div class="list">' + state.plans.map(planCard).join("") + '</div>';
+  el("view").innerHTML = html;
+}
+
+function collectPlan(idx){
+  var p = state.plans[idx];
+  document.querySelectorAll('[data-i="' + idx + '"]').forEach(function(inp){
+    var f = inp.getAttribute("data-f");
+    var v = inp.value;
+    if(f === "features") p.features = v.split("\n").map(function(s){return s.trim();}).filter(Boolean);
+    else if(f === "active") p.active = (v === "true");
+    else if(f === "price"){ p.priceText = v; p.price = v; }
+    else if(f === "durationDays" || f === "order") p[f] = Number(v) || 0;
+    else p[f] = v;
+  });
+  return p;
+}
+
+async function savePlan(idx){
+  try {
+    var p = collectPlan(idx);
+    var d = await call("admin_plan_save", { plan: p });
+    if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u062D\u0641\u0638");
+    state.plans = d.plans || [];
+    loadPlans();
+  } catch(e) { alert(e.message); }
+}
+
+async function delPlan(id){
+  if(!confirm("\u062D\u0630\u0641 \u0627\u0644\u0628\u0627\u0642\u0629 \u062F\u064A\u061F")) return;
+  try {
+    var d = await call("admin_plan_delete", { planId: id });
+    if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u062D\u0630\u0641");
+    state.plans = d.plans || [];
+    loadPlans();
+  } catch(e) { alert(e.message); }
+}
+
+/* ---------- support ---------- */
+async function loadThreads(){
+  el("view").innerHTML = '<div class="empty">\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...</div>';
+  try {
+    var d = await call("admin_support_threads");
+    if(!d.ok) throw new Error(d.error);
+    state.threads = d.threads || [];
+    var html = '<p class="hint">\u0631\u0633\u0627\u064A\u0644 \u0627\u0644\u0639\u0645\u0644\u0627\u0621 \u0645\u0646 \u0634\u0627\u062A \u0627\u0644\u062F\u0639\u0645 \u0641\u064A \u0627\u0644\u0645\u0648\u0642\u0639. \u0627\u0644\u0631\u062F \u0645\u0646 \u0647\u0646\u0627 \u0628\u064A\u0638\u0647\u0631 \u0644\u0647\u0645 \u0641\u064A \u0627\u0644\u0634\u0627\u062A.</p>';
+    if(!state.threads.length) html += '<div class="empty">\u0645\u0641\u064A\u0634 \u0631\u0633\u0627\u064A\u0644 \u062F\u0639\u0645 \u0644\u0633\u0647.</div>';
+    else html += '<div class="list">' + state.threads.map(function(t){
+      return '<div class="item thread" onclick="openThread(\'' + esc(t.threadId) + '\')">' +
+        '<div style="min-width:0"><div class="name">' + esc(t.username || t.threadId) + (t.pro ? ' <span class="chip pro">\u2B50 Pro</span>' : '') + (t.unread ? ' <span class="badge">' + t.unread + '</span>' : '') + '</div>' +
+        '<div class="last">' + (t.lastDir === "out" ? "\u0623\u0646\u062A: " : "") + esc(t.last) + '</div></div>' +
+        '<div class="meta" style="text-align:left">' + esc(fmt(t.lastAt)) + '<br>' + t.count + ' \u0631\u0633\u0627\u0644\u0629</div></div>';
+    }).join("") + '</div>';
+    el("view").innerHTML = html;
+    if(!pollTimer) pollTimer = setInterval(function(){ if(view === "support" && !state.threadId) loadThreads(); }, 15000);
+  } catch(e) {
+    el("view").innerHTML = '<div class="empty">' + esc(e.message) + '</div>';
+  }
+}
+
+async function openThread(id){
+  state.threadId = id;
+  el("view").innerHTML = '<div class="empty">\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...</div>';
+  try {
+    var d = await call("admin_support_thread", { threadId: id });
+    if(!d.ok) throw new Error(d.error);
+    var html = '<div class="row" style="margin-top:12px"><button class="btn sm" onclick="state.threadId=\'\';loadThreads()">\u0631\u062C\u0648\u0639</button><div class="name">' + esc(d.username || id) + '</div></div>' +
+      '<div class="msgs" id="msgs">' + (d.messages || []).map(function(m){
+        return '<div class="m ' + (m.dir === "out" ? "out" : "in") + '">' + esc(m.text) + '<span class="t">' + esc(fmt(m.at)) + '</span></div>';
+      }).join("") + '</div>' +
+      '<textarea id="reply" placeholder="\u0627\u0643\u062A\u0628 \u0627\u0644\u0631\u062F..."></textarea>' +
+      '<div class="row" style="margin-top:8px"><button class="btn gold" onclick="sendReply()">\u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0631\u062F</button><button class="btn sm" onclick="refreshThread()">\u062A\u062D\u062F\u064A\u062B</button></div>';
+    el("view").innerHTML = html;
+    var box = el("msgs"); if(box) box.scrollTop = box.scrollHeight;
+    if(!pollTimer) pollTimer = setInterval(function(){ if(view === "support" && state.threadId) refreshThread(); }, 10000);
+  } catch(e) {
+    el("view").innerHTML = '<div class="empty">' + esc(e.message) + '</div>';
+  }
+}
+
+async function refreshThread(){
+  if(!state.threadId) return;
+  try {
+    var d = await call("admin_support_thread", { threadId: state.threadId });
+    if(!d.ok) return;
+    var box = el("msgs");
+    if(!box) return;
+    var atBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 60;
+    box.innerHTML = (d.messages || []).map(function(m){
+      return '<div class="m ' + (m.dir === "out" ? "out" : "in") + '">' + esc(m.text) + '<span class="t">' + esc(fmt(m.at)) + '</span></div>';
+    }).join("");
+    if(atBottom) box.scrollTop = box.scrollHeight;
+  } catch(e) {}
+}
+
+async function sendReply(){
+  var t = el("reply");
+  var text = (t.value || "").trim();
+  if(!text) return;
+  try {
+    var d = await call("admin_support_reply", { threadId: state.threadId, text: text });
+    if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u0625\u0631\u0633\u0627\u0644");
+    t.value = "";
+    refreshThread();
+  } catch(e) { alert(e.message); }
+}
+
+/* ---------- settings ---------- */
+async function loadSettings(){
+  el("view").innerHTML = '<div class="empty">\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...</div>';
+  try {
+    var d = await call("admin_settings_get");
+    if(!d.ok) throw new Error(d.error);
+    var s = d.settings;
+    state.settings = s;
+    el("view").innerHTML =
+      '<div class="item" style="margin-top:12px"><div class="name">\u062A\u064A\u0644\u064A\u062C\u0631\u0627\u0645 (\u0634\u0627\u062A \u0627\u0644\u062F\u0639\u0645)</div>' +
+      '<div class="meta">' + (s.tgTokenSet ? '<span class="gold">\u0627\u0644\u062A\u0648\u0643\u0646 \u0645\u062D\u0641\u0648\u0638</span>' : '\u0645\u0641\u064A\u0634 \u062A\u0648\u0643\u0646 \u0645\u062D\u0641\u0648\u0638') + (s.tgChatId ? ' \u2014 \u0627\u0644\u0645\u062D\u0627\u062F\u062B\u0629 \u0645\u0631\u0628\u0648\u0637\u0629: ' + esc(s.tgChatName || s.tgChatId) : ' \u2014 \u0627\u0644\u0645\u062D\u0627\u062F\u062B\u0629 \u0645\u0634 \u0645\u0631\u0628\u0648\u0637\u0629') + '</div>' +
+      '<label>\u062A\u0648\u0643\u0646 \u0627\u0644\u0628\u0648\u062A (\u0645\u0646 BotFather)</label><input id="tgToken" type="password" placeholder="' + (s.tgTokenSet ? "\u0645\u062D\u0641\u0648\u0638 \u2014 \u0633\u064A\u0628\u0647 \u0641\u0627\u0636\u064A \u0644\u0648 \u0645\u0634 \u0639\u0627\u064A\u0632 \u062A\u063A\u064A\u0651\u0631\u0647" : "123456789:AA...") + '">' +
+      '<div class="acts"><button class="btn sm" onclick="saveTgToken()">\u062D\u0641\u0638 \u0627\u0644\u062A\u0648\u0643\u0646</button>' +
+      '<button class="btn sm blue" onclick="connectTg()">\u0631\u0628\u0637 \u0627\u0644\u0645\u062D\u0627\u062F\u062B\u0629</button>' +
+      '<button class="btn sm" onclick="testTg()">\u0631\u0633\u0627\u0644\u0629 \u062A\u062C\u0631\u0628\u0629</button></div>' +
+      '<p class="hint">\u0661) \u0627\u0639\u0645\u0644 \u0628\u0648\u062A \u0645\u0646 @BotFather \u0648\u0627\u0646\u0633\u062E \u0627\u0644\u062A\u0648\u0643\u0646. \u0662) \u0627\u0644\u0635\u0642\u0647 \u0647\u0646\u0627 \u0648\u0627\u062D\u0641\u0638. \u0663) \u0627\u0641\u062A\u062D \u062A\u064A\u0644\u064A\u062C\u0631\u0627\u0645 \u0648\u0627\u0628\u0639\u062A /start \u0644\u0644\u0628\u0648\u062A. \u0664) \u0627\u0636\u063A\u0637 "\u0631\u0628\u0637 \u0627\u0644\u0645\u062D\u0627\u062F\u062B\u0629".</p></div>' +
+
+      '<div class="item"><div class="name">\u0634\u0627\u062A \u0627\u0644\u062F\u0639\u0645 \u0641\u064A \u0627\u0644\u0645\u0648\u0642\u0639</div>' +
+      '<label>\u0627\u0644\u062D\u0627\u0644\u0629</label><select id="supOn"><option value="true"' + (s.supportEnabled ? " selected" : "") + '>\u0634\u063A\u0627\u0644</option><option value="false"' + (s.supportEnabled ? "" : " selected") + '>\u0645\u062A\u0648\u0642\u0641</option></select>' +
+      '<div class="grid2"><div><label>\u0641\u0648\u062F\u0627\u0641\u0648\u0646 \u0643\u0627\u0634 (\u0631\u0642\u0645)</label><input id="payV" value="' + esc(s.payVodafone) + '" placeholder="01xxxxxxxxx"></div>' +
+      '<div><label>\u0625\u0646\u0633\u062A\u0627\u0628\u0627\u064A</label><input id="payI" value="' + esc(s.payInstapay) + '" placeholder="name@instapay"></div></div>' +
+      '<label>\u0639\u0646\u0648\u0627\u0646 \u0635\u0641\u062D\u0629 \u0627\u0644\u0628\u0627\u0642\u0627\u062A</label><input id="plansTitle" value="' + esc(s.plansTitle) + '">' +
+      '<label>\u0645\u0644\u0627\u062D\u0638\u0629 \u062A\u0638\u0647\u0631 \u0644\u0644\u0639\u0645\u0644\u0627\u0621 \u062A\u062D\u062A \u0627\u0644\u0628\u0627\u0642\u0627\u062A (\u0633\u064A\u0628\u0647\u0627 \u0641\u0627\u0636\u064A\u0629 \u0644\u0648 \u0645\u0634 \u0639\u0627\u064A\u0632 \u062D\u0627\u062C\u0629 \u062A\u0638\u0647\u0631)</label><input id="plansNote" value="' + esc(s.plansNote) + '">' +
+      '<div class="name" style="margin-top:14px">\u062D\u062F\u0648\u062F \u0627\u0644\u0645\u062C\u0627\u0646\u064A \u0645\u0642\u0627\u0628\u0644 Pro</div>' +
+      '<div class="grid2"><div><label>\u0631\u0633\u0627\u064A\u0644 \u0627\u0644\u0645\u062C\u0627\u0646\u064A \u0641\u064A \u0627\u0644\u064A\u0648\u0645</label><input id="freeCap" type="number" min="10" max="5000" value="' + (Number(s.freeDailyCap) || 150) + '"></div>' +
+      '<div><label>\u0637\u0644\u0628\u0627\u062A \u0628\u0631\u0645\u062C\u0629 \u0641\u064A \u0627\u0644\u064A\u0648\u0645</label><input id="freeCode" type="number" min="0" max="1000" value="' + (s.freeCodeCap === undefined ? 10 : Number(s.freeCodeCap)) + '"></div></div>' +
+      '<div class="grid2"><div><label>\u0635\u0648\u0631 \u0641\u064A \u0627\u0644\u064A\u0648\u0645</label><input id="freeImg" type="number" min="0" max="1000" value="' + (s.freeImageCap === undefined ? 10 : Number(s.freeImageCap)) + '"></div>' +
+      '<div><label>\u0645\u062D\u0627\u062F\u062B\u0627\u062A \u0627\u0644\u0645\u062C\u0627\u0646\u064A \u0627\u0644\u0645\u062D\u0641\u0648\u0638\u0629 (Pro \u0628\u0644\u0627 \u062D\u062F)</label><input id="freeChats" type="number" min="10" max="500" value="' + (Number(s.freeMaxChats) || 100) + '"></div></div>' +
+      '<p class="hint">Pro \u0628\u0644\u0627 \u062D\u062F\u0648\u062F \u0641\u064A \u0643\u0644 \u062D\u0627\u062C\u0629. \u0635\u0641\u0631 \u0641\u064A \u0627\u0644\u0635\u0648\u0631 \u0623\u0648 \u0627\u0644\u0643\u0648\u062F \u064A\u0639\u0646\u064A \u0645\u0642\u0641\u0648\u0644 \u0644\u0644\u0645\u062C\u0627\u0646\u064A. \u0627\u0644\u0632\u0627\u0626\u0631 (\u0628\u062F\u0648\u0646 \u062D\u0633\u0627\u0628) \u0644\u064A\u0647 \u062D\u062F \u062B\u0627\u0628\u062A.</p>' +
+      '<p class="hint">\u062A\u062E\u0641\u064A\u0636 \u0639\u062F\u062F \u0627\u0644\u0645\u062D\u0627\u062F\u062B\u0627\u062A \u0627\u0644\u0645\u062D\u0641\u0648\u0638\u0629 \u0628\u064A\u0645\u0633\u062D \u0627\u0644\u0623\u0642\u062F\u0645 \u063A\u064A\u0631 \u0627\u0644\u0645\u062B\u0628\u0651\u062A \u0639\u0646\u062F \u0623\u0648\u0644 \u062D\u0641\u0638 \u0644\u0644\u0645\u0633\u062A\u062E\u062F\u0645.</p>' +
+      '<label>\u0627\u0644\u062F\u0639\u0645 \u0627\u0644\u0645\u0628\u0627\u0634\u0631 \u0645\u062A\u0627\u062D \u0644\u0640</label><select id="supAcc"><option value="pro"' + (s.supportAccess === "all" ? "" : " selected") + '>\u0645\u0634\u062A\u0631\u0643\u064A Pro \u0628\u0633</option><option value="all"' + (s.supportAccess === "all" ? " selected" : "") + '>\u0643\u0644 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645\u064A\u0646</option></select>' +
+      '<label>\u0645\u062F\u0629 \u0627\u0646\u062A\u0647\u0627\u0621 \u0637\u0644\u0628\u0627\u062A \u0627\u0644\u0627\u0634\u062A\u0631\u0627\u0643 \u0628\u0627\u0644\u0633\u0627\u0639\u0627\u062A (0 = \u0645\u0641\u064A\u0634 \u0627\u0646\u062A\u0647\u0627\u0621\u060C \u0627\u0644\u0637\u0644\u0628 \u064A\u0641\u0636\u0644 \u0645\u0633\u062A\u0646\u064A \u0644\u062D\u062F \u0645\u0627 \u062A\u0648\u0627\u0641\u0642 \u0623\u0648 \u062A\u0631\u0641\u0636)</label><input id="reqExp" type="number" min="0" max="720" value="' + (Number(s.requestExpiryHours) || 0) + '">' +
+      '<div class="acts"><button class="btn sm gold" onclick="saveSettings()">\u062D\u0641\u0638 \u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A</button></div></div>' +
+
+      '<div class="item"><div class="name">\u0643\u0644\u0645\u0629 \u0633\u0631 \u0644\u0648\u062D\u0629 \u0627\u0644\u062A\u062D\u0643\u0645</div>' +
+      '<div class="grid2"><div><label>\u0627\u0644\u062D\u0627\u0644\u064A\u0629</label><input id="cpOld" type="password"></div><div><label>\u0627\u0644\u062C\u062F\u064A\u062F\u0629 (8+)</label><input id="cpNew" type="password"></div></div>' +
+      '<div class="acts"><button class="btn sm" onclick="changePw()">\u062A\u063A\u064A\u064A\u0631 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631</button></div>' +
+      '<p class="hint">\u0644\u0648 \u0646\u0633\u064A\u062A \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631: \u0627\u0641\u062A\u062D \u062A\u0627\u0628 Settings \u0641\u064A \u0627\u0644\u0634\u064A\u062A\u060C \u0627\u0645\u0633\u062D \u0627\u0644\u0633\u0637\u0648\u0631 adminSalt \u0648 adminHash \u0648 adminVer\u060C \u0648\u0628\u0639\u062F\u064A\u0646 \u0627\u0641\u062A\u062D \u0627\u0644\u0635\u0641\u062D\u0629 \u062F\u064A \u062A\u0627\u0646\u064A \u0648\u0647\u064A \u0647\u062A\u0637\u0644\u0628 \u0645\u0646\u0643 \u062A\u0639\u0645\u0644 \u0648\u0627\u062D\u062F\u0629 \u062C\u062F\u064A\u062F\u0629.</p></div>';
+  } catch(e) {
+    el("view").innerHTML = '<div class="empty">' + esc(e.message) + '</div>';
+  }
+}
+
+async function saveTgToken(){
+  var t = el("tgToken").value.trim();
+  if(!t){ alert("\u0627\u0644\u0635\u0642 \u0627\u0644\u062A\u0648\u0643\u0646 \u0627\u0644\u0623\u0648\u0644."); return; }
+  try {
+    var d = await call("admin_telegram_save", { token: t });
+    if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u062D\u0641\u0638");
+    alert("\u062A\u0645 \u062D\u0641\u0638 \u0627\u0644\u062A\u0648\u0643\u0646 \u2705");
+    loadSettings();
+  } catch(e) { alert(e.message); }
+}
+
+async function connectTg(){
+  try {
+    var d = await call("admin_telegram_connect");
+    if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u0631\u0628\u0637");
+    alert("\u062A\u0645 \u0631\u0628\u0637 \u0627\u0644\u0645\u062D\u0627\u062F\u062B\u0629 \u2705 " + (d.name || ""));
+    loadSettings();
+  } catch(e) { alert(e.message); }
+}
+
+async function testTg(){
+  try {
+    var d = await call("admin_telegram_test");
+    if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u0625\u0631\u0633\u0627\u0644");
+    alert("\u062A\u0645 \u0625\u0631\u0633\u0627\u0644 \u0631\u0633\u0627\u0644\u0629 \u062A\u062C\u0631\u0628\u0629 \u0639\u0644\u0649 \u062A\u064A\u0644\u064A\u062C\u0631\u0627\u0645 \u2705");
+  } catch(e) { alert(e.message); }
+}
+
+async function saveSettings(){
+  try {
+    var d = await call("admin_settings_save", {
+      supportEnabled: el("supOn").value === "true",
+      payVodafone: el("payV").value.trim(),
+      payInstapay: el("payI").value.trim(),
+      plansTitle: el("plansTitle").value.trim(),
+      plansNote: el("plansNote").value.trim(),
+      requestExpiryHours: Number(el("reqExp").value || 0),
+      freeDailyCap: Number(el("freeCap").value || 0),
+      freeMaxChats: Number(el("freeChats").value || 0),
+      freeCodeCap: Number(el("freeCode").value),
+      freeImageCap: Number(el("freeImg").value),
+      supportAccess: el("supAcc").value
+    });
+    if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u062D\u0641\u0638");
+    alert("\u062A\u0645 \u0627\u0644\u062D\u0641\u0638 \u2705");
+    loadSettings();
+  } catch(e) { alert(e.message); }
+}
+
+async function changePw(){
+  var a = el("cpOld").value, b = el("cpNew").value;
+  if(!a || b.length < 8){ alert("\u0627\u0643\u062A\u0628 \u0627\u0644\u062D\u0627\u0644\u064A\u0629 \u0648\u0627\u0644\u062C\u062F\u064A\u062F\u0629 (8 \u062D\u0631\u0648\u0641 \u0639\u0644\u0649 \u0627\u0644\u0623\u0642\u0644)."); return; }
+  try {
+    var d = await call("admin_change_password", { oldPassword: a, newPassword: b });
+    if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u062A\u063A\u064A\u064A\u0631");
+    setToken(d.token);
+    alert("\u062A\u0645 \u062A\u063A\u064A\u064A\u0631 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631 \u2705");
+    loadSettings();
+  } catch(e) { alert(e.message); }
+}
+
+/* ---------- subscription requests ---------- */
+var reqFilter = "pending";
+
+function reqChip(st){
+  if(st === "pending") return '<span class="chip gold">\u0645\u0633\u062A\u0646\u064A</span>';
+  if(st === "approved") return '<span class="chip pro">\u0645\u0642\u0628\u0648\u0644</span>';
+  if(st === "rejected") return '<span class="chip banned">\u0645\u0631\u0641\u0648\u0636</span>';
+  return '<span class="chip">\u0645\u0646\u062A\u0647\u064A</span>';
+}
+
+function reqPhoneLink(p){
+  var digits = String(p || "").replace(/[^0-9]/g, "");
+  if(!digits) return "";
+  var intl = digits.indexOf("0") === 0 ? ("20" + digits.slice(1)) : digits;
+  return '<a href="https://wa.me/' + intl + '" target="_blank" rel="noopener">' + esc(digits) + '</a>';
+}
+
+async function loadRequests(){
+  el("view").innerHTML = '<div class="empty">\u062C\u0627\u0631\u064A \u0627\u0644\u062A\u062D\u0645\u064A\u0644...</div>';
+  try {
+    var d = await call("admin_requests", { limit: 300 });
+    if(!d.ok) throw new Error(d.error);
+    var all = d.requests || [];
+    var list = all.filter(function(r){ return reqFilter === "all" ? true : r.status === reqFilter; });
+    var expTxt = (Number(d.expiryHours) || 0) > 0 ? (d.expiryHours + " \u0633\u0627\u0639\u0629") : "\u0645\u0641\u064A\u0634 \u0627\u0646\u062A\u0647\u0627\u0621";
+    var html = '<div class="row" style="margin-top:12px">' +
+      '<button class="btn sm ' + (reqFilter === "pending" ? "gold" : "") + '" onclick="reqFilter=\'pending\';loadRequests()">\u0645\u0633\u062A\u0646\u064A\u0629 (' + d.pending + ')</button>' +
+      '<button class="btn sm ' + (reqFilter === "approved" ? "gold" : "") + '" onclick="reqFilter=\'approved\';loadRequests()">\u0645\u0642\u0628\u0648\u0644\u0629</button>' +
+      '<button class="btn sm ' + (reqFilter === "rejected" ? "gold" : "") + '" onclick="reqFilter=\'rejected\';loadRequests()">\u0645\u0631\u0641\u0648\u0636\u0629</button>' +
+      '<button class="btn sm ' + (reqFilter === "all" ? "gold" : "") + '" onclick="reqFilter=\'all\';loadRequests()">\u0627\u0644\u0643\u0644 (' + d.total + ')</button>' +
+      '</div>' +
+      '<p class="hint">\u0645\u062F\u0629 \u0627\u0646\u062A\u0647\u0627\u0621 \u0627\u0644\u0637\u0644\u0628\u0627\u062A: ' + esc(expTxt) + ' \u2014 \u0628\u062A\u062A\u0638\u0628\u0637 \u0645\u0646 \u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A.</p>';
+    if(!list.length){
+      html += '<div class="empty">\u0645\u0641\u064A\u0634 \u0637\u0644\u0628\u0627\u062A \u0641\u064A \u0627\u0644\u0642\u0633\u0645 \u062F\u0647.</div>';
+    } else {
+      list.forEach(function(r){
+        var who = esc(r.fullName || "") || esc(r.username || "");
+        html += '<div class="item">' +
+          '<div class="spread"><div class="name">' + esc(r.planName || r.planId || "\u0628\u0627\u0642\u0629") + ' \u2014 ' + who + ' ' + reqChip(r.status) + '</div>' +
+          '<div class="meta">' + esc(fmt(r.createdAt)) + '</div></div>' +
+          '<div class="meta">\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062A\u062E\u062F\u0645: <b>' + esc(r.username || "-") + '</b> \u00B7 \u0645\u0648\u0628\u0627\u064A\u0644: ' + (reqPhoneLink(r.phone) || "-") + ' \u00B7 \u0625\u064A\u0645\u064A\u0644: ' + (r.email ? '<a href="mailto:' + esc(r.email) + '">' + esc(r.email) + '</a>' : "-") + '</div>' +
+          '<div class="meta">\u0627\u0644\u0645\u062F\u0629 \u0627\u0644\u0645\u0637\u0644\u0648\u0628\u0629: ' + (Number(r.durationDays) || 0) + ' \u064A\u0648\u0645 \u00B7 \u0627\u0644\u0633\u0639\u0631: ' + (Number(r.price) > 0 ? (esc(String(r.price)) + " " + esc(r.currency || "")) : "\u0645\u062C\u0627\u0646\u064B\u0627") + '</div>';
+        if(r.status === "pending"){
+          html += '<div class="grid2"><div><label>\u0639\u062F\u062F \u0627\u0644\u0623\u064A\u0627\u0645 \u0639\u0646\u062F \u0627\u0644\u0645\u0648\u0627\u0641\u0642\u0629</label><input id="days_' + esc(r.id) + '" type="number" min="1" max="3650" value="' + (Number(r.durationDays) || 30) + '"></div>' +
+            '<div><label>\u0645\u0644\u0627\u062D\u0638\u0629 (\u0627\u062E\u062A\u064A\u0627\u0631\u064A)</label><input id="note_' + esc(r.id) + '" placeholder="\u062A\u0638\u0647\u0631 \u0641\u064A \u0633\u062C\u0644 \u0627\u0644\u0637\u0644\u0628"></div></div>' +
+            '<label style="display:flex;gap:8px;align-items:center;margin-top:8px"><input type="checkbox" id="now_' + esc(r.id) + '" style="width:auto"> \u0627\u0628\u062F\u0623 \u0627\u0644\u0645\u062F\u0629 \u0645\u0646 \u0627\u0644\u0646\u0647\u0627\u0631\u062F\u0629 (\u0628\u062F\u0644 \u0645\u0627 \u062A\u062A\u0636\u0627\u0641 \u0639\u0644\u0649 \u0627\u0634\u062A\u0631\u0627\u0643\u0647 \u0627\u0644\u062D\u0627\u0644\u064A)</label>' +
+            '<div class="acts"><button class="btn sm gold" onclick="decideRequest(\'' + esc(r.id) + '\',\'approve\')">\u0645\u0648\u0627\u0641\u0642\u0629 \u0648\u062A\u0641\u0639\u064A\u0644</button>' +
+            '<button class="btn sm danger" onclick="decideRequest(\'' + esc(r.id) + '\',\'reject\')">\u0631\u0641\u0636</button></div>';
+        } else {
+          html += '<div class="meta">\u0627\u062A\u062D\u0633\u0645: ' + esc(fmt(r.decidedAt)) + (r.paidUntil ? ' \u00B7 \u0627\u0644\u0628\u0627\u0642\u0629 \u0634\u063A\u0627\u0644\u0629 \u0644\u062D\u062F ' + esc(day(r.paidUntil)) : '') + (r.adminNote ? ' \u00B7 \u0645\u0644\u0627\u062D\u0638\u0629: ' + esc(r.adminNote) : '') + '</div>';
+        }
+        html += '</div>';
+      });
+    }
+    el("view").innerHTML = html;
+  } catch(e) {
+    el("view").innerHTML = '<div class="empty">' + esc(e.message) + '</div>';
+  }
+}
+
+async function decideRequest(id, decision){
+  var days = 0, note = "";
+  if(decision === "approve"){
+    var inp = el("days_" + id);
+    days = Number(inp ? inp.value : 0) || 0;
+    if(days < 1){ alert("\u0627\u0643\u062A\u0628 \u0639\u062F\u062F \u0623\u064A\u0627\u0645 \u0635\u062D\u064A\u062D."); return; }
+    if(!confirm("\u062A\u0641\u0639\u064A\u0644 \u0627\u0644\u0628\u0627\u0642\u0629 \u0644\u0645\u062F\u0629 " + days + " \u064A\u0648\u0645\u061F")) return;
+  } else if(!confirm("\u0631\u0641\u0636 \u0627\u0644\u0637\u0644\u0628\u061F")) return;
+  var fn = el("now_" + id);
+  var nEl = el("note_" + id);
+  note = nEl ? nEl.value.trim() : "";
+  try {
+    var d = await call("admin_request_decide", { requestId: id, decision: decision, days: days, note: note, fromNow: !!(fn && fn.checked) });
+    if(!d.ok) throw new Error(d.error || "\u062A\u0639\u0630\u0631 \u0627\u0644\u062D\u0641\u0638");
+    alert(decision === "approve" ? ("\u062A\u0645 \u0627\u0644\u062A\u0641\u0639\u064A\u0644 \u2705 \u0644\u062D\u062F " + fmt(d.paidUntil)) : "\u062A\u0645 \u0631\u0641\u0636 \u0627\u0644\u0637\u0644\u0628");
+    loadRequests();
+  } catch(e) { alert(e.message); }
+}
+
+/* ---------- bindings ---------- */
+el("loginBtn").onclick = doLogin;
+el("pw").addEventListener("keydown", function(e){ if(e.key === "Enter") doLogin(); });
+el("pw2").addEventListener("keydown", function(e){ if(e.key === "Enter") doLogin(); });
+el("logoutBtn").onclick = function(){ if(confirm("\u062E\u0631\u0648\u062C \u0645\u0646 \u0644\u0648\u062D\u0629 \u0627\u0644\u062A\u062D\u0643\u0645\u061F")) logout(); };
+el("refreshBtn").onclick = function(){ setView(view); };
+document.querySelectorAll(".tab").forEach(function(t){
+  t.onclick = function(){ setView(t.getAttribute("data-view")); };
+});
+
+boot();
+</script>
+</body>
+</html>
